@@ -1,14 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Digital Prescription</title>
+    <style>
+        body { font-family: Arial; background:#f2f2f2; padding:20px; }
+        .card { background:#fff; padding:20px; max-width:600px; margin:auto; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,0.2); }
+        button { display:block; width:100%; padding:12px; margin:10px 0; font-size:16px; cursor:pointer; background:#4CAF50; color:#fff; border:none; border-radius:5px; }
+        textarea { width:100%; height:120px; padding:10px; font-size:16px; }
+        .prescription-sheet { margin-top:20px; padding:15px; border:2px solid #333; border-radius:10px; background:#fff; }
+    </style>
+</head>
 <body>
 
-<header>
-    <h1>Voice-Assisted Digital Prescription</h1>
-    <p>Prototype for faster OPD workflow</p>
-</header>
-
 <div class="card">
-    <button onclick="startRecording()">🎙️ Start Recording</button>
-    <textarea id="output" rows="8"
-     placeholder="Doctor's spoken prescription will appear here..."></textarea>
-</div>
-    <link rel="stylesheet" href="style.css">
+    <h2>Voice-Assisted Digital Prescription</h2>
 
+    <!-- BUTTONS -->
+    <div id="buttonsContainer">
+        <button id="startBtn">🎙️ Start Recording</button>
+        <button id="generateBtn">🖨️ Generate Prescription Sheet</button>
+    </div>
+
+    <textarea id="output" placeholder="Spoken prescription will appear here..."></textarea>
