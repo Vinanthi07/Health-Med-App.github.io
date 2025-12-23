@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Voice Prescription</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>Voice-Assisted Digital Prescription</h1>
+    <p>Prototype for faster OPD workflow</p>
+</header>
+
+<div class="card">
+    <button onclick="startRecording()">🎙️ Start Recording</button>
+    <textarea id="output" rows="8" placeholder="Doctor's spoken prescription will appear here..."></textarea>
+</div>
+
+<script>
+    const output = document.getElementById("output");
+
+    function startRecording() {
+        if (!('webkitSpeechRecognition' in window)) {
+            alert("Speech recognition not supported in this browser");
+            return;
+        }
+
+        const recognition = new webkitSpeechRecognition();
+        recognition.lang = "en-IN";
+        recognition.continuous = false;
+        recognition.interimResults = false;
+
+        recognition.onresult = function(event) {
+            output.value = event.results[0][0].transcript;
+        };
+
+        recognition.start();
+    }
+</script>
+
+</body>
+</html>
