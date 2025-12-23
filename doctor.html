@@ -12,16 +12,17 @@
     <p>Patient Health Summary</p>
 </header>
 
-<div class="card" id="summaryCard">
+<div class="card">
     <h2>Patient Summary</h2>
-    <div id="summary"></div>
+    <div id="summary">Loading patient data...</div>
     <br>
     <button id="voiceButton">🎙️ Open Voice Prescription</button>
 </div>
 
 <script>
-    // Load patient data
-    const data = JSON.parse(localStorage.getItem("patientData"));
+    // Make sure patient data exists
+    let data = JSON.parse(localStorage.getItem("patientData"));
+
     const summaryDiv = document.getElementById("summary");
     const button = document.getElementById("voiceButton");
 
@@ -37,7 +38,7 @@
         summaryDiv.innerHTML = "<p>No patient data available.</p>";
     }
 
-    // Button action
+    // Button action always works
     button.onclick = () => {
         window.location.href = "prescription.html";
     };
@@ -45,4 +46,3 @@
 
 </body>
 </html>
-
