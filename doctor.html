@@ -2,46 +2,122 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Doctor Dashboard</title>
+    <title>Digital Prescription</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            padding: 20px;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .card {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 600px;
+            margin: auto;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px 0;
+            cursor: pointer;
+            border: none;
+            background: #4CAF50;
+            color: white;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        textarea {
+            width: 100%;
+            height: 120px;
+            margin-top: 10px;
+            padding: 10px;
+            font-size: 16px;
+        }
+        .prescription-sheet {
+            margin-top: 20px;
+            padding: 15px;
+            border: 2px solid #333;
+            border-radius: 10px;
+            background: #fff;
+        }
+        .prescription-sheet h2 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .prescription-sheet p {
+            margin: 5px 0;
+        }
+    </style>
 </head>
 <body>
 
 <header>
-    <h1>Doctor Dashboard</h1>
-    <p>Patient Health Summary</p>
+    <h1>Voice-Assisted Digital Prescription</h1>
+    <p>Prototype: Doctor speaks, system generates prescription</p>
 </header>
 
 <div class="card">
-    <h2>Patient Summary</h2>
-    <div id="summary">Loading patient data...</div>
-    <br>
-    <button id="voiceButton">🎙️ Open Voice Prescription</button>
+    <button id="startBtn" onclick="startRecording()">🎙️ Start Recording</button>
+    <button onclick="generatePrescription()">🖨️ Generate Prescription Sheet</button>
+    <textarea id="output" placeholder="Spoken prescription will appear here..."></textarea>
+
+    <div class="prescription-sheet" id="prescriptionSheet" style="display:none;">
+        <h2>Prescription</h2>
+        <p id="prescriptionText"></p>
+    </div>
 </div>
 
 <script>
-    // Make sure patient data exists
-    let data = JSON.parse(localStorage.getItem("patientData"));
+    const output = document.getElementById("output");
 
-    const summaryDiv = document.getElementById("summary");
-    const button = document.getElementById("voiceButton");
+    function startRecording() {
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
-    if (data) {
-        summaryDiv.innerHTML = `
-            <p><strong>Age:</strong> ${data.age}</p>
-            <p><strong>Smoking:</strong> ${data.smoke}</p>
-            <p><strong>Alcohol:</strong> ${data.alcohol}</p>
-            <p><strong>Conditions:</strong> ${data.conditions}</p>
-            <p><strong>Allergies:</strong> ${data.allergy}</p>
-        `;
-    } else {
-        summaryDiv.innerHTML = "<p>No patient data available.</p>";
+        if (!SpeechRecognition) {
+            alert("Speech recognition not supported. Use Chrome desktop.");
+            return;
+        }
+
+        const recognition = new SpeechRecognition();
+        recognition.lang = "en-IN";
+        recognition.continuous = false;
+        recognition.interimResults = false;
+
+        recognition.onstart = () => {
+            output.value = "Listening...";
+        };
+
+        recognition.onresult = (event) => {
+            output.value = event.results[0][0].transcript;
+        };
+
+        recognition.onerror = (event) => {
+            output.value = "Error: " + event.error;
+        };
+
+        recognition.start();
     }
 
-    // Button action always works
-    button.onclick = () => {
-        window.location.href = "prescription.html";
-    };
+    function generatePrescription() {
+        const text = output.value.trim();
+        if (!text) {
+            alert("Please record the prescription first.");
+            return;
+        }
+
+        const sheet = document.getElementById("prescriptionSheet");
+        const prescText = document.getElementById("prescriptionText");
+
+        prescText.innerText = text;
+        sheet.style.display = "block";
+        sheet.scrollIntoView({behavior: "smooth"});
+    }
 </script>
 
 </body>
