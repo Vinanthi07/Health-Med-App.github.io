@@ -1,34 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Doctor Dashboard</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-<header>
-    <h1>Doctor Dashboard</h1>
-    <p>Patient Health Summary</p>
-</header>
-
-<div class="card">
-    <h2>Patient Summary</h2>
-    <div id="summary"></div>
-
-    <br>
-
-    <a href="prescription.html">
-        <button>🎙️ Open Voice Prescription</button>
-    </a>
-</div>
-
-
 <script>
     const data = JSON.parse(localStorage.getItem("patientData"));
+    const summaryDiv = document.getElementById("summary");
 
     if (data) {
-        document.getElementById("summary").innerHTML = `
+        summaryDiv.innerHTML = `
             <p><strong>Age:</strong> ${data.age}</p>
             <p><strong>Smoking:</strong> ${data.smoke}</p>
             <p><strong>Alcohol:</strong> ${data.alcohol}</p>
@@ -36,10 +11,15 @@
             <p><strong>Allergies:</strong> ${data.allergy}</p>
         `;
     } else {
-        document.getElementById("summary").innerText =
-            "No patient data available.";
+        summaryDiv.innerHTML = "<p>No patient data available.</p>";
     }
-</script>
 
-</body>
-</html>
+    // Add button dynamically AFTER showing summary
+    const button = document.createElement("button");
+    button.textContent = "🎙️ Open Voice Prescription";
+    button.onclick = () => {
+        window.location.href = "prescription.html";
+    };
+    summaryDiv.appendChild(document.createElement("br"));
+    summaryDiv.appendChild(button);
+</script>
