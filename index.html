@@ -2,33 +2,43 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Health Med App</title>
+    <title>HealthMed Insight</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <header>
-        <h1>Health Med App</h1>
-        <p>Your digital health assistant</p>
-    </header>
+<header>
+    <h1>HealthMed Insight</h1>
+    <p>Pre-Consultation Health Summary System</p>
+</header>
 
-    <section class="card">
-        <h2>🩺 Symptoms Checker</h2>
-        <p>Check your symptoms and get basic guidance.</p>
-        <button>Check Now</button>
-    </section>
+<div class="card">
+    <h2>Patient Health Information</h2>
 
-    <section class="card">
-        <h2>💊 Medicines</h2>
-        <p>View common medicines and usage info.</p>
-        <button>View Medicines</button>
-    </section>
+    <label>Age</label>
+    <input type="number" id="age">
 
-    <section class="card">
-        <h2>📅 Appointments</h2>
-        <p>Book appointments with doctors easily.</p>
-        <button>Book Now</button>
-    </section>
+    <label>Do you smoke?</label>
+    <select id="smoke">
+        <option>No</option>
+        <option>Yes</option>
+    </select>
 
+    <label>Do you consume alcohol?</label>
+    <select id="alcohol">
+        <option>No</option>
+        <option>Yes</option>
+    </select>
+
+    <label>Known Conditions</label>
+    <input type="text" id="conditions" placeholder="BP, Diabetes, Asthma">
+
+    <label>Allergies</label>
+    <input type="text" id="allergy" placeholder="Penicillin, Dust">
+
+    <button onclick="saveData()">Submit</button>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
