@@ -33,3 +33,13 @@ input,select{
      padding:8px;
      margin-bottom:10px;
 }
+textarea {
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+}
+
+button {
+    display: block;
+    margin-bottom: 10px;
+}
