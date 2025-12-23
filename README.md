@@ -1,7 +1,7 @@
 # HealthMed Insight – Pre-Consultation Health Summary System
 
 ## 🚀 Live Demo
-https://health-med-app.github.io
+ https://vinanthi07.github.io/Health-Med-App.github.io/
 
 ## 📌 Problem Statement
 In OPD settings, doctors often depend on patient-reported medical history. Due to forgetfulness or hesitation, important health details may be missed, affecting treatment decisions.
@@ -25,5 +25,5 @@ This is a frontend prototype created to demonstrate UI flow and problem understa
 - AI-based risk indicators
 
 ## 👩‍💻 Author
-Vinanthi (First-year Engineering Student)
+Vinanthi Mnaohari V 
 
