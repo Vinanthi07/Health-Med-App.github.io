@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Doctor Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>Doctor Dashboard</h1>
+    <p>Patient Health Summary</p>
+</header>
+
+<div class="card" id="summary"></div>
+
+<script>
+    const data = JSON.parse(localStorage.getItem("patientData"));
+
+    if (data) {
+        document.getElementById("summary").innerHTML = `
+            <p><strong>Age:</strong> ${data.age}</p>
+            <p><strong>Smoking:</strong> ${data.smoke}</p>
+            <p><strong>Alcohol:</strong> ${data.alcohol}</p>
+            <p><strong>Conditions:</strong> ${data.conditions}</p>
+            <p><strong>Allergies:</strong> ${data.allergy}</p>
+        `;
+    } else {
+        document.getElementById("summary").innerText =
+            "No patient data available.";
+    }
+</script>
+
+</body>
+</html>
