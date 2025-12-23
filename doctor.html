@@ -2,98 +2,47 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Digital Prescription</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f2f2f2;
-            padding: 20px;
-        }
-        .card {
-            background: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            max-width: 600px;
-            margin: auto;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-        }
-        button {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            font-size: 16px;
-            cursor: pointer;
-            border: none;
-            border-radius: 5px;
-            background: #4CAF50;
-            color: white;
-        }
-        textarea {
-            width: 100%;
-            height: 120px;
-            padding: 10px;
-            font-size: 16px;
-        }
-        .prescription-sheet {
-            margin-top: 20px;
-            padding: 15px;
-            border: 2px solid #333;
-            border-radius: 10px;
-            background: #fff;
-        }
-    </style>
+    <title>Doctor Dashboard</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+<header>
+    <h1>Doctor Dashboard</h1>
+    <p>Patient Health Summary</p>
+</header>
+
 <div class="card">
-    <h2>Voice-Assisted Digital Prescription</h2>
-
-    <button id="startBtn" onclick="startRecording()">🎙️ Start Recording</button>
-    <button id="generateBtn" onclick="generatePrescription()">🖨️ Generate Prescription Sheet</button>
-
-    <textarea id="output" placeholder="Spoken prescription will appear here..."></textarea>
-
-    <div class="prescription-sheet" id="prescriptionSheet" style="display:none;">
-        <h3>Prescription</h3>
-        <p id="prescriptionText"></p>
-    </div>
+    <h2>Patient Summary</h2>
+    <div id="summary">Loading patient data...</div>
+    <br>
+    <button id="voiceButton">🎙️ Open Voice Prescription</button>
 </div>
 
 <script>
-    const output = document.getElementById("output");
+    // Make sure patient data exists
+    let data = JSON.parse(localStorage.getItem("patientData"));
 
-    function startRecording() {
-        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-        if (!SpeechRecognition) {
-            alert("Speech recognition not supported. Use Chrome desktop.");
-            return;
-        }
+    const summaryDiv = document.getElementById("summary");
+    const button = document.getElementById("voiceButton");
 
-        const recognition = new SpeechRecognition();
-        recognition.lang = "en-IN";
-        recognition.continuous = false;
-        recognition.interimResults = false;
-
-        recognition.onstart = () => { output.value = "Listening..."; };
-        recognition.onresult = (event) => { output.value = event.results[0][0].transcript; };
-        recognition.onerror = (event) => { output.value = "Error: " + event.error; };
-        recognition.start();
+    if (data) {
+        summaryDiv.innerHTML = `
+            <p><strong>Age:</strong> ${data.age}</p>
+            <p><strong>Smoking:</strong> ${data.smoke}</p>
+            <p><strong>Alcohol:</strong> ${data.alcohol}</p>
+            <p><strong>Conditions:</strong> ${data.conditions}</p>
+            <p><strong>Allergies:</strong> ${data.allergy}</p>
+        `;
+    } else {
+        summaryDiv.innerHTML = "<p>No patient data available.</p>";
     }
 
-    function generatePrescription() {
-        const text = output.value.trim();
-        if (!text) { alert("Please record the prescription first."); return; }
-
-        const sheet = document.getElementById("prescriptionSheet");
-        const prescText = document.getElementById("prescriptionText");
-
-        prescText.innerText = text;
-        sheet.style.display = "block";
-        sheet.scrollIntoView({behavior:"smooth"});
-    }
+    // Button action always works
+    button.onclick = () => {
+        window.location.href = "prescription.html";
+    };
 </script>
 
 </body>
 </html>
-
