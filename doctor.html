@@ -12,7 +12,17 @@
     <p>Patient Health Summary</p>
 </header>
 
-<div class="card" id="summary"></div>
+<div class="card">
+    <h2>Patient Summary</h2>
+    <div id="summary"></div>
+
+    <br>
+
+    <a href="prescription.html">
+        <button>🎙️ Open Voice Prescription</button>
+    </a>
+</div>
+
 
 <script>
     const data = JSON.parse(localStorage.getItem("patientData"));
