@@ -28,3 +28,8 @@ button{
 button : hover {
   background:#1f5ed6;
 }
+input,select{
+     width:100%;
+     padding:8px;
+     margin-bottom:10px;
+}
