@@ -1,37 +1,12 @@
-<script>
-    <a href="prescription.html">
-    <button>🎙️ Voice Prescription</button>
-</a>
+<body>
 
-    const output = document.getElementById("output");
+<header>
+    <h1>Voice-Assisted Digital Prescription</h1>
+    <p>Prototype for faster OPD workflow</p>
+</header>
 
-    function startRecording() {
-        const SpeechRecognition = 
-            window.SpeechRecognition || window.webkitSpeechRecognition;
-
-        if (!SpeechRecognition) {
-            alert("Speech recognition not supported. Use Chrome on laptop.");
-            return;
-        }
-
-        const recognition = new SpeechRecognition();
-        recognition.lang = "en-IN";
-        recognition.continuous = false;
-        recognition.interimResults = false;
-
-        recognition.onstart = () => {
-            output.value = "Listening...";
-        };
-
-        recognition.onresult = (event) => {
-            output.value = event.results[0][0].transcript;
-        };
-
-        recognition.onerror = (event) => {
-            output.value = "Error: " + event.error;
-        };
-
-        recognition.start();
-    }
-</script>
-
+<div class="card">
+    <button onclick="startRecording()">🎙️ Start Recording</button>
+    <textarea id="output" rows="8"
+     placeholder="Doctor's spoken prescription will appear here..."></textarea>
+</div>
