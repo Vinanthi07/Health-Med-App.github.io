@@ -3,16 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Digital Prescription</title>
-    <link rel="stylesheet" href="style.css">
     <style>
         body {
             font-family: Arial, sans-serif;
             background: #f2f2f2;
             padding: 20px;
-        }
-        header {
-            text-align: center;
-            margin-bottom: 20px;
         }
         .card {
             background: #fff;
@@ -23,19 +18,20 @@
             box-shadow: 0 2px 8px rgba(0,0,0,0.2);
         }
         button {
-            padding: 10px 20px;
+            display: block;
+            width: 100%;
+            padding: 10px;
             margin: 10px 0;
+            font-size: 16px;
             cursor: pointer;
             border: none;
+            border-radius: 5px;
             background: #4CAF50;
             color: white;
-            border-radius: 5px;
-            font-size: 16px;
         }
         textarea {
             width: 100%;
             height: 120px;
-            margin-top: 10px;
             padding: 10px;
             font-size: 16px;
         }
@@ -46,29 +42,20 @@
             border-radius: 10px;
             background: #fff;
         }
-        .prescription-sheet h2 {
-            text-align: center;
-            margin-bottom: 10px;
-        }
-        .prescription-sheet p {
-            margin: 5px 0;
-        }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>Voice-Assisted Digital Prescription</h1>
-    <p>Prototype: Doctor speaks, system generates prescription</p>
-</header>
-
 <div class="card">
+    <h2>Voice-Assisted Digital Prescription</h2>
+
     <button id="startBtn" onclick="startRecording()">🎙️ Start Recording</button>
-    <button onclick="generatePrescription()">🖨️ Generate Prescription Sheet</button>
+    <button id="generateBtn" onclick="generatePrescription()">🖨️ Generate Prescription Sheet</button>
+
     <textarea id="output" placeholder="Spoken prescription will appear here..."></textarea>
 
     <div class="prescription-sheet" id="prescriptionSheet" style="display:none;">
-        <h2>Prescription</h2>
+        <h3>Prescription</h3>
         <p id="prescriptionText"></p>
     </div>
 </div>
@@ -78,7 +65,6 @@
 
     function startRecording() {
         const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-
         if (!SpeechRecognition) {
             alert("Speech recognition not supported. Use Chrome desktop.");
             return;
@@ -89,36 +75,25 @@
         recognition.continuous = false;
         recognition.interimResults = false;
 
-        recognition.onstart = () => {
-            output.value = "Listening...";
-        };
-
-        recognition.onresult = (event) => {
-            output.value = event.results[0][0].transcript;
-        };
-
-        recognition.onerror = (event) => {
-            output.value = "Error: " + event.error;
-        };
-
+        recognition.onstart = () => { output.value = "Listening..."; };
+        recognition.onresult = (event) => { output.value = event.results[0][0].transcript; };
+        recognition.onerror = (event) => { output.value = "Error: " + event.error; };
         recognition.start();
     }
 
     function generatePrescription() {
         const text = output.value.trim();
-        if (!text) {
-            alert("Please record the prescription first.");
-            return;
-        }
+        if (!text) { alert("Please record the prescription first."); return; }
 
         const sheet = document.getElementById("prescriptionSheet");
         const prescText = document.getElementById("prescriptionText");
 
         prescText.innerText = text;
         sheet.style.display = "block";
-        sheet.scrollIntoView({behavior: "smooth"});
+        sheet.scrollIntoView({behavior:"smooth"});
     }
 </script>
 
 </body>
 </html>
+
