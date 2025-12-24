@@ -1,31 +1,36 @@
 console.log("script.js loaded");
 
-// ---------- SAVE PATIENT ----------
-function savePatient() {
-    localStorage.setItem("name", document.getElementById("name").value);
-    localStorage.setItem("age", document.getElementById("age").value);
-    localStorage.setItem("gender", document.getElementById("gender").value);
-    localStorage.setItem("history", document.getElementById("history").value);
-    localStorage.setItem("smoke", document.getElementById("smoke").value);
-    localStorage.setItem("alcohol", document.getElementById("alcohol").value);
+// -------- PATIENT FORM ----------
+const nextVitalsBtn = document.getElementById("nextVitals");
+if(nextVitalsBtn) {
+    nextVitalsBtn.addEventListener("click", function() {
+        localStorage.setItem("name", document.getElementById("name").value);
+        localStorage.setItem("age", document.getElementById("age").value);
+        localStorage.setItem("gender", document.getElementById("gender").value);
+        localStorage.setItem("history", document.getElementById("history").value);
+        localStorage.setItem("smoke", document.getElementById("smoke").value);
+        localStorage.setItem("alcohol", document.getElementById("alcohol").value);
 
-    window.location.href = "vitals.html";
+        window.location.href = "vitals.html";
+    });
 }
 
-// ---------- SAVE VITALS ----------
-function saveVitals() {
-    localStorage.setItem("bp", document.getElementById("bp").value);
-    localStorage.setItem("heart", document.getElementById("heart").value);
-    localStorage.setItem("temp", document.getElementById("temp").value);
+// -------- VITALS FORM ----------
+const submitVitalsBtn = document.getElementById("submitVitals");
+if(submitVitalsBtn) {
+    submitVitalsBtn.addEventListener("click", function() {
+        localStorage.setItem("bp", document.getElementById("bp").value);
+        localStorage.setItem("heart", document.getElementById("heart").value);
+        localStorage.setItem("temp", document.getElementById("temp").value);
 
-    window.location.href = "doctor.html";
+        window.location.href = "doctor.html";
+    });
 }
 
-// ---------- LOAD DASHBOARD ----------
-document.addEventListener("DOMContentLoaded", function () {
-
+// -------- DOCTOR DASHBOARD ----------
+document.addEventListener("DOMContentLoaded", function() {
     const patientInfo = document.getElementById("patientInfo");
-    if (patientInfo) {
+    if(patientInfo) {
         patientInfo.innerHTML = `
         Name: ${localStorage.getItem("name")}<br>
         Age: ${localStorage.getItem("age")}<br>
@@ -37,16 +42,21 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     const vitalsInfo = document.getElementById("vitalsInfo");
-    if (vitalsInfo) {
+    if(vitalsInfo) {
         vitalsInfo.innerHTML = `
         BP: ${localStorage.getItem("bp")}<br>
         Heart Rate: ${localStorage.getItem("heart")}<br>
-        Temperature: ${localStorage.getItem("temp")}
+        Temp: ${localStorage.getItem("temp")}
         `;
     }
-});
 
-// ---------- NAVIGATION ----------
-function goTo(page) {
-    window.location.href = page;
-}
+    // Dashboard buttons
+    const editVitalsBtn = document.getElementById("editVitals");
+    if(editVitalsBtn) editVitalsBtn.addEventListener("click", ()=> window.location.href="vitals.html");
+
+    const voiceRxBtn = document.getElementById("voiceRx");
+    if(voiceRxBtn) voiceRxBtn.addEventListener("click", ()=> window.location.href="prescription.html");
+
+    const summaryBtn = document.getElementById("summary");
+    if(summaryBtn) summaryBtn.addEventListener("click", ()=> window.location.href="summary.html");
+});
