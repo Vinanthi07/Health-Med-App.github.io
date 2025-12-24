@@ -1,66 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
     <title>Doctor Dashboard</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #eef2f5;
-            padding: 20px;
-        }
-        h1 {
-            text-align: center;
-        }
-        .card {
-            background: white;
-            padding: 20px;
-            margin: 15px auto;
-            max-width: 600px;
-            border-radius: 8px;
-        }
-        .btn {
-            display: inline-block;
-            padding: 10px 15px;
-            background: #0d6efd;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-    </style>
 </head>
 <body>
 
 <h1>Doctor Dashboard</h1>
 
-<div class="card">
-    <h3>Patient Information</h3>
-    <p><b>Name:</b> <span id="pName">-</span></p>
-    <p><b>Age:</b> <span id="pAge">-</span></p>
-    <p><b>Gender:</b> <span id="pGender">-</span></p>
-    <p><b>Medical History:</b> <span id="pHistory">-</span></p>
-</div>
-
-<div class="card">
-    <h3>Vitals Report</h3>
-    <p><b>Blood Pressure:</b> <span id="pBP">-</span></p>
-    <p><b>Heart Rate:</b> <span id="pHeart">-</span></p>
-</div>
-
-<div class="card">
-    <a class="btn" href="patient.html">Add / Update Patient</a>
-</div>
+<div id="output"></div>
 
 <script>
-const data = JSON.parse(localStorage.getItem("patientData"));
+let age = localStorage.getItem("age");
+let smoke = localStorage.getItem("smoke");
+let alcohol = localStorage.getItem("alcohol");
+let conditions = localStorage.getItem("conditions");
+let allergy = localStorage.getItem("allergy");
+let bp = localStorage.getItem("bp");
+let heart = localStorage.getItem("heart");
+let temp = localStorage.getItem("temp");
 
-if (data) {
-    document.getElementById("pName").innerText = data.name;
-    document.getElementById("pAge").innerText = data.age;
-    document.getElementById("pGender").innerText = data.gender;
-    document.getElementById("pHistory").innerText = data.history || "Not disclosed";
-    document.getElementById("pBP").innerText = data.bp || "Not available";
-    document.getElementById("pHeart").innerText = data.heartRate || "Not available";
+if (!age || !bp) {
+    document.getElementById("output").innerText =
+        "No patient data found. Start from index.html";
+} else {
+    document.getElementById("output").innerHTML = `
+        <h3>Patient Summary</h3>
+        Age: ${age}<br>
+        Smoking: ${smoke}<br>
+        Alcohol: ${alcohol}<br>
+        Conditions: ${conditions}<br>
+        Allergies: ${allergy}<br><br>
+
+        <h3>Vitals</h3>
+        BP: ${bp}<br>
+        Heart Rate: ${heart}<br>
+        Temperature: ${temp}
+    `;
 }
 </script>
 
