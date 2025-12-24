@@ -1,21 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Wellness Tracking</title>
-    <link rel="stylesheet" href="style.css">
+  <title>Wellness Tracking</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<h2>Wellness Tracking</h2>
+<h2>Daily Wellness Tracker</h2>
 
-<p>Daily wellness recommendations based on vitals and lifestyle:</p>
+<div class="card">
+  <label>Sleep Hours (per night)</label>
+  <input type="range" min="0" max="12" id="sleep">
+  <p id="sleepValue">6 hrs</p>
 
-<div id="wellnessContent"></div>
+  <label>Exercise Done Today?</label>
+  <select id="exercise">
+    <option>No</option>
+    <option>Yes</option>
+  </select>
 
-<h3>Patient Feedback</h3>
-<textarea id="wellnessText" placeholder="Type your feedback here"></textarea>
+  <label>Mental Health Check-in</label>
+  <select id="mental">
+    <option>Good</option>
+    <option>Stressed</option>
+    <option>Need Support</option>
+  </select>
+</div>
+
+<h3>Your Feedback</h3>
+<textarea id="wellnessText" placeholder="How are you feeling today?"></textarea>
 <br>
-<button type="button" id="saveWellness">Submit Feedback</button>
+<button id="saveWellness">Save Wellness Data</button>
 
 <script src="script.js"></script>
 </body>
