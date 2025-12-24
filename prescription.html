@@ -2,52 +2,18 @@
 <html>
 <head>
     <title>Voice Prescription</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<h2>🎙️ Voice-Based Prescription</h2>
+<h2>Voice Prescription</h2>
 
-<button onclick="startRecording()">Start Recording</button>
-<p id="status"></p>
+<button id="startRecording">🎙 Start Recording</button>
+<button id="stopRecording">🛑 Stop Recording</button>
 
-<textarea id="rx" rows="6" cols="60"
-placeholder="Prescription will appear here..."></textarea><br><br>
+<h3>Prescription Output:</h3>
+<p id="prescriptionText"></p>
 
-<button onclick="saveRx()">Save Prescription</button>
-
-<script>
-let recognition;
-
-function startRecording() {
-    if (!('webkitSpeechRecognition' in window)) {
-        alert("Voice recognition not supported in this browser");
-        return;
-    }
-
-    recognition = new webkitSpeechRecognition();
-    recognition.lang = "en-IN";
-    recognition.continuous = false;
-
-    status.innerText = "Listening...";
-
-    recognition.onresult = function(event) {
-        rx.value += event.results[0][0].transcript;
-        status.innerText = "Recording stopped";
-    };
-
-    recognition.onerror = function() {
-        status.innerText = "Error occurred during recording";
-    };
-
-    recognition.start();
-}
-
-function saveRx() {
-    localStorage.setItem("prescription", rx.value);
-    alert("Prescription saved successfully");
-    window.location.href = "doctor.html";
-}
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
