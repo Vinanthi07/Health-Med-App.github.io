@@ -121,19 +121,31 @@ Architecture	Modular, page-based
 📁 Project Structure
 HealthMed-Insight/
 │
+
 ├── index.html        # Entry point
+
 ├── patient.html      # Patient pre-consultation
+
 ├── vitals.html       # Vitals entry
+
 ├── doctor.html       # Doctor dashboard
+
 ├── prescription.html
+
 ├── summary.html
+
 │
 ├── education.html    # Patient education
+
 ├── support.html      # Medical support
+
 ├── wellness.html     # Wellness tracking
+
 │
 ├── style.css         # UI styling
+
 ├── script.js         # Application logic
+
 └── README.md
 
 🔁 Workflow Overview
@@ -175,8 +187,11 @@ Multilingual patient support
 Mobile app version
 
 👩‍💻 Developer
+
 Vinanthi Manohari V
+
 Engineering student at Vidyavardhaka college of Mysuru.
+
 “I aimed to build something that feels real, useful, and impactful — not just a demo.”
 
 
