@@ -1,12 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
     <title>Patient Education</title>
 </head>
 <body>
-<h1>Patient Education Module</h1>
-<p>Include information about conditions, treatments, diet, and lifestyle.</p>
-<a href="doctor.html">Back to Doctor Dashboard</a>
+
+<h2>Patient Education</h2>
+
+<p id="eduContent"></p>
+
+<label>
+    <input type="checkbox" id="ack">
+    I understand the information provided
+</label><br><br>
+
+<button onclick="saveEducation()">Save & Return</button>
+
+<script>
+let conditions = localStorage.conditions || "general health";
+let smoke = localStorage.smoke;
+let alcohol = localStorage.alcohol;
+
+let text = `Based on your condition (${conditions}), the following guidance is provided:\n\n`;
+
+if (smoke === "Yes")
+    text += "- Smoking increases complications. Strongly advised to quit.\n";
+
+if (alcohol === "Yes")
+    text += "- Alcohol may interfere with medications. Reduce intake.\n";
+
+text += "- Maintain regular exercise\n";
+text += "- Follow prescribed medication strictly\n";
+text += "- Attend follow-up appointments\n";
+
+eduContent.innerText = text;
+
+function saveEducation(){
+    localStorage.setItem("education_ack", ack.checked ? "Yes" : "No");
+    alert("Education feedback saved");
+    window.location.href = "doctor.html";
+}
+</script>
+
 </body>
 </html>
