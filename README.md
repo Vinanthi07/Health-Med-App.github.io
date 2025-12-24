@@ -190,7 +190,7 @@ Mobile app version
 
 Vinanthi Manohari V
 
-Engineering student at Vidyavardhaka college of Mysuru.
+1st year Engineering student.
 
 “I aimed to build something that feels real, useful, and impactful — not just a demo.”
 
