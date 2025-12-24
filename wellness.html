@@ -7,11 +7,17 @@
 <body>
 
 <h2>Daily Wellness Tracker</h2>
+const sleep = document.getElementById("sleep");
+const sleepValue = document.getElementById("sleepValue");
 
-<div class="card">
-  <label>Sleep Hours (per night)</label>
-  <input type="range" min="0" max="12" value="6" id="sleep">
-  <p id="sleepValue"> 6 hrs</p>
+if (sleep && sleepValue) {
+  sleepValue.innerText = sleep.value + " hrs";
+
+  sleep.addEventListener("input", () => {
+    sleepValue.innerText = sleep.value + " hrs";
+  });
+}
+
 
   <label>Exercise Done Today?</label>
   <select id="exercise">
