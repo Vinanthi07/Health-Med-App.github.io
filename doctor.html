@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <title>Doctor Dashboard</title>
     <style>
-        body { font-family: Arial; padding: 20px; }
+        body { font-family: Arial; padding: 20px; max-width: 900px; margin:auto; }
+        h1 { text-align: center; color: #2c3e50; }
         .card { border: 1px solid #ccc; padding: 15px; margin-bottom: 15px; border-radius: 8px; }
-        button { padding: 10px 15px; margin: 5px; cursor: pointer; }
-        h2 { margin-top: 0; }
+        button { padding: 10px 15px; margin: 5px; cursor: pointer; border-radius: 5px; border:none; background:#3498db; color:white; }
+        button:hover { background:#2980b9; }
+        h2 { margin-top: 0; color: #34495e; }
     </style>
 </head>
 <body>
@@ -37,16 +39,15 @@
 </div>
 
 <script>
-// Load patient and vitals
 const patient = JSON.parse(localStorage.getItem("patientData"));
 const vitals = JSON.parse(localStorage.getItem("vitalsData"));
 
 if(patient){
     document.getElementById("patientInfo").innerHTML = `
-        Name: ${patient.name} <br>
-        Age: ${patient.age} <br>
-        Gender: ${patient.gender} <br>
-        Medical History: ${patient.history || "Not disclosed"}
+        <strong>Name:</strong> ${patient.name} <br>
+        <strong>Age:</strong> ${patient.age} <br>
+        <strong>Gender:</strong> ${patient.gender} <br>
+        <strong>Medical History:</strong> ${patient.history || "Not disclosed"}
     `;
 } else {
     document.getElementById("patientInfo").innerText = "No patient data found. Fill patient.html first.";
@@ -54,16 +55,15 @@ if(patient){
 
 if(vitals){
     document.getElementById("vitalsInfo").innerHTML = `
-        Blood Pressure: ${vitals.bp} <br>
-        Heart Rate: ${vitals.heart} bpm <br>
-        Temperature: ${vitals.temp} °C <br>
-        Oxygen Level: ${vitals.oxygen} %
+        <strong>Blood Pressure:</strong> ${vitals.bp} <br>
+        <strong>Heart Rate:</strong> ${vitals.heart} bpm <br>
+        <strong>Temperature:</strong> ${vitals.temp} °C <br>
+        <strong>Oxygen Level:</strong> ${vitals.oxygen} %
     `;
 } else {
     document.getElementById("vitalsInfo").innerText = "No vitals data found. Fill vitals.html first.";
 }
 
-// Prescription button
 function goToPrescription(){
     if(!patient || !vitals){
         alert("Patient data and vitals must be filled before prescription.");
