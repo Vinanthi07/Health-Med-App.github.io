@@ -1,7 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
     <title>Doctor Dashboard</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -9,46 +8,22 @@
 
 <h1>Doctor Dashboard</h1>
 
-<div class="section">
-    <h3>Patient Profile</h3>
-    <p id="patientProfile">Loading...</p>
-</div>
+<h3>Patient Details</h3>
+<p id="patientInfo"></p>
 
-<div class="section">
-    <h3>Vitals</h3>
-    <p id="vitalsInfo">Loading...</p>
-</div>
+<h3>Vitals</h3>
+<p id="vitalsInfo"></p>
 
-<div class="section">
-    <h3>⚠️ Risk Alerts</h3>
-    <p id="riskAlerts">Checking...</p>
-</div>
+<h3>⚠️ Risk Alerts</h3>
+<p id="riskAlerts"></p>
 
-<div class="section">
-    <h3>Patient Education Feedback</h3>
-    <p id="educationInfo">Loading...</p>
-</div>
-
-<div class="section">
-    <h3>Patient Support & Symptoms</h3>
-    <p id="supportInfo">Loading...</p>
-</div>
-
-<div class="section">
-    <h3>Wellness Tracking</h3>
-    <p id="wellnessInfo">Loading...</p>
-</div>
-
-<!-- 🔥 CLINICAL ACTIONS (THIS IS WHAT YOU WERE MISSING) -->
-<div class="section">
-    <h3>Clinical Actions</h3>
-
-    <button onclick="goTo('prescription.html')">🎙️ Voice Prescription</button>
-    <button onclick="goTo('summary.html')">📄 Generate Summary</button>
-    <button onclick="goTo('education.html')">📚 Education</button>
-    <button onclick="goTo('support.html')">💊 Support</button>
-    <button onclick="goTo('wellness.html')">❤️ Wellness</button>
-</div>
+<h3>Clinical Actions</h3>
+<button type="button" id="editVitals">Edit Vitals</button>
+<button type="button" id="voiceRx">Voice Prescription</button>
+<button type="button" id="summary">Generate Summary</button>
+<button type="button" id="educationBtn">Patient Education</button>
+<button type="button" id="supportBtn">Patient Support</button>
+<button type="button" id="wellnessBtn">Wellness Tracking</button>
 
 <script src="script.js"></script>
 </body>
