@@ -7,35 +7,38 @@
 
 <h1>Doctor Dashboard</h1>
 
-<div id="output"></div>
+<div id="info"></div>
+
+<hr>
+
+<button onclick="go('prescription.html')">Generate Prescription</button>
+<button onclick="go('summary.html')">Generate Summary</button>
+<button onclick="go('education.html')">Patient Education</button>
+<button onclick="go('support.html')">Patient Support</button>
+<button onclick="go('wellness.html')">Wellness Tracking</button>
 
 <script>
-let age = localStorage.getItem("age");
-let smoke = localStorage.getItem("smoke");
-let alcohol = localStorage.getItem("alcohol");
-let conditions = localStorage.getItem("conditions");
-let allergy = localStorage.getItem("allergy");
-let bp = localStorage.getItem("bp");
-let heart = localStorage.getItem("heart");
-let temp = localStorage.getItem("temp");
+if(!localStorage.name){
+    document.body.innerHTML = "Start from index.html";
+}
 
-if (!age || !bp) {
-    document.getElementById("output").innerText =
-        "No patient data found. Start from index.html";
-} else {
-    document.getElementById("output").innerHTML = `
-        <h3>Patient Summary</h3>
-        Age: ${age}<br>
-        Smoking: ${smoke}<br>
-        Alcohol: ${alcohol}<br>
-        Conditions: ${conditions}<br>
-        Allergies: ${allergy}<br><br>
+info.innerHTML = `
+<b>Name:</b> ${localStorage.name}<br>
+<b>Age:</b> ${localStorage.age}<br>
+<b>Gender:</b> ${localStorage.gender}<br>
+<b>History:</b> ${localStorage.history}<br>
+<b>Smoking:</b> ${localStorage.smoke}<br>
+<b>Alcohol:</b> ${localStorage.alcohol}<br>
+<b>Conditions:</b> ${localStorage.conditions}<br>
+<b>Allergies:</b> ${localStorage.allergy}<br><br>
 
-        <h3>Vitals</h3>
-        BP: ${bp}<br>
-        Heart Rate: ${heart}<br>
-        Temperature: ${temp}
-    `;
+<b>BP:</b> ${localStorage.bp}<br>
+<b>Heart Rate:</b> ${localStorage.heart}<br>
+<b>Temperature:</b> ${localStorage.temp}
+`;
+
+function go(page){
+    window.location.href = page;
 }
 </script>
 
