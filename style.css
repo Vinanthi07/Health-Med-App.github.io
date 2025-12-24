@@ -1,15 +1,97 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
 body {
-    font-family: Arial;
-    padding: 20px;
+  margin: 0;
+  padding: 0;
+  background: #f4f8fb;
+  color: #333;
 }
 
+/* HEADINGS */
+h1, h2, h3 {
+  text-align: center;
+  color: #0b5ed7;
+  margin-bottom: 10px;
+}
+
+/* CARD STYLE */
 .card {
-    max-width: 400px;
-    padding: 20px;
-    border: 1px solid #ccc;
+  background: #ffffff;
+  width: 90%;
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 14px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
 }
 
+/* INPUTS */
 input, textarea, select {
-    width: 100%;
-    margin-bottom: 10px;
+  width: 100%;
+  padding: 10px;
+  margin-top: 8px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+textarea {
+  min-height: 90px;
+}
+
+/* BUTTONS */
+button {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(135deg, #0b5ed7, #198754);
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  opacity: 0.95;
+}
+
+/* LISTS */
+ul {
+  padding-left: 20px;
+}
+
+li {
+  margin-bottom: 8px;
+}
+
+/* IMAGES */
+img {
+  margin: 10px;
+  border-radius: 10px;
+}
+
+/* RANGE SLIDER */
+input[type=range] {
+  margin-top: 15px;
+}
+
+/* FOOTER TEXT */
+p {
+  text-align: center;
+  font-size: 14px;
+  color: #555;
+}
+
+/* DASHBOARD BUTTONS (if any) */
+.dashboard-btn {
+  display: block;
+  width: 90%;
+  max-width: 400px;
+  margin: 10px auto;
 }
