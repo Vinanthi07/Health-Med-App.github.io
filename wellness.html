@@ -1,59 +1,82 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
   <title>Wellness Tracking</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<h2>Daily Wellness Tracker</h2>
-  
-<label>Sleep Hours (per night)</label>
-<input 
-  type="range" 
-  min="0" 
-  max="12" 
-  value="6" 
-  id="sleep"
-  oninput="updateSleep(this.value)"
->
+<header>
+  <h1>HealthMed Insight</h1>
+  <p>Wellness Tracking Module</p>
+</header>
 
-<p>
-  <strong>Sleep Duration:</strong>
-  <span id="sleepValue">6</span> hrs
-</p>
+<div class="card">
 
+  <h3>Sleep Hours (per night)</h3>
+  <input 
+    type="range" 
+    min="0" 
+    max="12" 
+    value="6" 
+    id="sleep"
+    oninput="updateSleep(this.value)"
+  >
 
-<script src="script.js"></script>
-  
-<label>Exercise Done Today?</label>
+  <p>
+    <strong>Sleep Duration:</strong>
+    <span id="sleepValue">6</span> hrs
+  </p>
+
+  <h3>Exercise Today</h3>
   <select id="exercise">
-    <option>No</option>
+    <option value="">Select</option>
     <option>Yes</option>
+    <option>No</option>
   </select>
 
-  <label>Mental Health Check-in</label>
+  <h3>Mental Health Status</h3>
   <select id="mental">
+    <option value="">Select</option>
     <option>Good</option>
     <option>Stressed</option>
     <option>Need Support</option>
   </select>
+
+  <h3>Patient Feedback</h3>
+  <textarea id="wellnessText" placeholder="How are you feeling today?"></textarea>
+
+  <button onclick="saveWellness()">Save Wellness Data</button>
+
 </div>
 
-<h3>Your Feedback</h3>
-<textarea id="wellnessText" placeholder="How are you feeling today?"></textarea>
-<br>
-<button id="saveWellness">Save Wellness Data</button>
-
- 
-
-<script src="script.js"></script>
-  <script>
+<script>
+  // Update sleep text live
   function updateSleep(val) {
     document.getElementById("sleepValue").innerText = val;
-    localStorage.setItem("sleep", val);
+  }
+
+  // Save wellness data
+  function saveWellness() {
+    const sleep = document.getElementById("sleep").value;
+    const exercise = document.getElementById("exercise").value;
+    const mental = document.getElementById("mental").value;
+    const feedback = document.getElementById("wellnessText").value;
+
+    if (!exercise || !mental) {
+      alert("Please complete all wellness fields");
+      return;
+    }
+
+    localStorage.setItem("sleep", sleep);
+    localStorage.setItem("exercise", exercise);
+    localStorage.setItem("mental", mental);
+    localStorage.setItem("wellness_feedback", feedback);
+
+    alert("Wellness data saved successfully!");
   }
 </script>
-<button onclick="saveWellness()">Save Wellness Data</button>
+
 </body>
 </html>
