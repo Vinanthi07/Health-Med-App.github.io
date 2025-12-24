@@ -1,0 +1,17 @@
+<script>
+function submitPatient() {
+    const patientData = {
+        name: document.getElementById("name").value,
+        age: document.getElementById("age").value,
+        gender: document.getElementById("gender").value,
+        history: document.getElementById("history").value
+    };
+
+    localStorage.setItem("patientData", JSON.stringify(patientData));
+    window.location.href = "vitals.html";
+}
+</script>
+<input id="name">
+<input id="age">
+<input id="gender">
+<textarea id="history"></textarea>
