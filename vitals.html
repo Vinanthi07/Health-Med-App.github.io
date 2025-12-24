@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Patient Vitals</title>
-<style>
-body { font-family: Arial; max-width:600px; margin:auto; padding:20px; }
-input, button { width:100%; padding:10px; margin-top:10px; }
-button { cursor:pointer; }
-</style>
+    <meta charset="UTF-8">
+    <title>Patient Vitals</title>
+    <style>
+        body { font-family: Arial; max-width: 600px; margin:auto; padding:20px; }
+        input, button { width: 100%; padding: 10px; margin-top: 10px; }
+        button { cursor: pointer; }
+    </style>
 </head>
 <body>
 
 <h2>Enter Patient Vitals</h2>
 
 <form id="vitalsForm">
-    <label>Blood Pressure</label>
+    <label>Blood Pressure (e.g., 120/80)</label>
     <input type="text" id="bp" required>
 
     <label>Heart Rate (bpm)</label>
@@ -46,8 +46,6 @@ document.getElementById("vitalsForm").addEventListener("submit", function(e){
     }
 
     localStorage.setItem("vitalsData", JSON.stringify(vitalsData));
-
-    // Redirect to doctor dashboard
     window.location.href = "doctor.html";
 });
 </script>
