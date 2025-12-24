@@ -7,19 +7,14 @@
 <body>
 
 <h2>Daily Wellness Tracker</h2>
-const sleep = document.getElementById("sleep");
-const sleepValue = document.getElementById("sleepValue");
+  
+<label>Sleep Hours (per night)</label>
+<input type="range" min="0" max="12" value="6" id="sleep">
+<p><strong>Sleep Duration:</strong> <span id="sleepValue">6</span> hrs</p>
 
-if (sleep && sleepValue) {
-  sleepValue.innerText = sleep.value + " hrs";
-
-  sleep.addEventListener("input", () => {
-    sleepValue.innerText = sleep.value + " hrs";
-  });
-}
-
-
-  <label>Exercise Done Today?</label>
+<script src="script.js"></script>
+  
+<label>Exercise Done Today?</label>
   <select id="exercise">
     <option>No</option>
     <option>Yes</option>
@@ -37,6 +32,25 @@ if (sleep && sleepValue) {
 <textarea id="wellnessText" placeholder="How are you feeling today?"></textarea>
 <br>
 <button id="saveWellness">Save Wellness Data</button>
+
+  // ================= WELLNESS SLIDER (100% FIX) =================
+document.addEventListener("DOMContentLoaded", function () {
+
+  const sleep = document.getElementById("sleep");
+  const sleepValue = document.getElementById("sleepValue");
+
+  if (sleep && sleepValue) {
+    // set initial value
+    sleepValue.textContent = sleep.value;
+
+    // update while sliding
+    sleep.addEventListener("input", function () {
+      sleepValue.textContent = sleep.value;
+    });
+  }
+
+});
+
 
 <script src="script.js"></script>
 </body>
