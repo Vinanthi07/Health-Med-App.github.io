@@ -2,48 +2,21 @@
 <html>
 <head>
     <title>Wellness Tracking</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <h2>Wellness Tracking</h2>
 
-<label>Sleep Quality</label>
-<select id="sleep">
-    <option>Good</option>
-    <option>Average</option>
-    <option>Poor</option>
-</select>
+<p>Daily wellness recommendations based on vitals and lifestyle:</p>
 
-<label>Daily Activity Level</label>
-<select id="activity">
-    <option>Active</option>
-    <option>Moderate</option>
-    <option>Low</option>
-</select>
+<div id="wellnessContent"></div>
 
-<label>Mood Today</label>
-<select id="mood">
-    <option>Happy</option>
-    <option>Neutral</option>
-    <option>Stressed</option>
-</select>
+<h3>Patient Feedback</h3>
+<textarea id="wellnessText" placeholder="Type your feedback here"></textarea>
+<br>
+<button type="button" id="saveWellness">Submit Feedback</button>
 
-<br><br>
-<button onclick="saveWellness()">Save Wellness Data</button>
-
-<script>
-sleep.value = localStorage.sleep || "Good";
-activity.value = localStorage.activity || "Moderate";
-mood.value = localStorage.mood || "Neutral";
-
-function saveWellness(){
-    localStorage.setItem("sleep", sleep.value);
-    localStorage.setItem("activity", activity.value);
-    localStorage.setItem("mood", mood.value);
-    alert("Wellness data saved");
-    window.location.href = "doctor.html";
-}
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
