@@ -1,44 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>HealthMed Insight</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+function saveData() {
+    localStorage.setItem("age", document.getElementById("age").value);
+    localStorage.setItem("smoke", document.getElementById("smoke").value);
+    localStorage.setItem("alcohol", document.getElementById("alcohol").value);
+    localStorage.setItem("conditions", document.getElementById("conditions").value);
+    localStorage.setItem("allergy", document.getElementById("allergy").value);
 
-<header>
-    <h1>HealthMed Insight</h1>
-    <p>Pre-Consultation Health Summary System</p>
-</header>
-
-<div class="card">
-    <h2>Patient Health Information</h2>
-
-    <label>Age</label>
-    <input type="number" id="age">
-
-    <label>Do you smoke?</label>
-    <select id="smoke">
-        <option>No</option>
-        <option>Yes</option>
-    </select>
-
-    <label>Do you consume alcohol?</label>
-    <select id="alcohol">
-        <option>No</option>
-        <option>Yes</option>
-    </select>
-
-    <label>Known Conditions</label>
-    <input type="text" id="conditions" placeholder="BP, Diabetes, Asthma">
-
-    <label>Allergies</label>
-    <input type="text" id="allergy" placeholder="Penicillin, Dust">
-
-    <button onclick="saveData()">Submit</button>
-</div>
-
-<script src="script.js"></script>
-</body>
-</html>
+    window.location.href = "vitals.html";
+}
