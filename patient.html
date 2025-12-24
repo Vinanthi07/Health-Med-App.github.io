@@ -1,93 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Patient Details</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f4f6f8;
-            padding: 20px;
-        }
-        h2 {
-            text-align: center;
-        }
-        form {
-            max-width: 400px;
-            margin: auto;
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-        }
-        label {
-            font-weight: bold;
-        }
-        input, textarea, select {
-            width: 100%;
-            padding: 8px;
-            margin: 8px 0 15px;
-        }
-        button {
-            width: 100%;
-            padding: 10px;
-            background: #0d6efd;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-    </style>
-</head>
-<body>
-
-<h2>Enter Patient Details</h2>
-
-<form onsubmit="savePatientData(event)">
-    <label>Patient Name</label>
-    <input type="text" id="name" required>
-
-    <label>Age</label>
-    <input type="number" id="age" required>
-
-    <label>Gender</label>
-    <select id="gender" required>
-        <option value="">Select</option>
-        <option>Male</option>
-        <option>Female</option>
-        <option>Other</option>
-    </select>
-
-    <label>Medical History</label>
-    <textarea id="history"></textarea>
-
-    <label>Blood Pressure</label>
-    <input type="text" id="bp" placeholder="120/80">
-
-    <label>Heart Rate</label>
-    <input type="text" id="heartRate" placeholder="72 bpm">
-
-    <button type="submit">Save Patient Data</button>
-</form>
-
 <script>
-function savePatientData(event) {
-    event.preventDefault();
+function savePatientData(e) {
+    e.preventDefault();
 
-    const patientData = {
+    localStorage.setItem("patientData", JSON.stringify({
         name: document.getElementById("name").value,
         age: document.getElementById("age").value,
         gender: document.getElementById("gender").value,
         history: document.getElementById("history").value,
         bp: document.getElementById("bp").value,
         heartRate: document.getElementById("heartRate").value
-    };
+    }));
 
-    localStorage.setItem("patientData", JSON.stringify(patientData));
-
-    alert("Patient data saved successfully!");
-    window.location.href = "doctor.html";
+    alert("Saved!");
 }
 </script>
-
-</body>
-</html>
