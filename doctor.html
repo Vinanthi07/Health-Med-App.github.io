@@ -1,46 +1,145 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Doctor Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f5f7fa;
+        }
+        h1 {
+            text-align: center;
+        }
+        .section {
+            background: white;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+        }
+        button {
+            padding: 10px 14px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background: #3498db;
+            color: white;
+        }
+        button:hover {
+            background: #2980b9;
+        }
+        .risk {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
 
 <h1>Doctor Dashboard</h1>
 
-<div id="info"></div>
+<!-- ================= PATIENT PROFILE ================= -->
+<div class="section">
+    <h3>Patient Profile</h3>
+    <p id="patientProfile"></p>
+</div>
 
-<hr>
+<!-- ================= VITALS ================= -->
+<div class="section">
+    <h3>Vitals</h3>
+    <p id="vitalsInfo"></p>
+</div>
 
-<button onclick="go('prescription.html')">Generate Prescription</button>
-<button onclick="go('summary.html')">Generate Summary</button>
-<button onclick="go('education.html')">Patient Education</button>
-<button onclick="go('support.html')">Patient Support</button>
-<button onclick="go('wellness.html')">Wellness Tracking</button>
+<!-- ================= RISK ALERTS ================= -->
+<div class="section">
+    <h3>⚠️ Risk Alerts</h3>
+    <p id="riskAlerts"></p>
+</div>
+
+<!-- ================= EDUCATION ================= -->
+<div class="section">
+    <h3>Patient Education Feedback</h3>
+    <p id="educationInfo"></p>
+</div>
+
+<!-- ================= SUPPORT ================= -->
+<div class="section">
+    <h3>Patient Support & Symptoms</h3>
+    <p id="supportInfo"></p>
+</div>
+
+<!-- ================= WELLNESS ================= -->
+<div class="section">
+    <h3>Wellness Tracking</h3>
+    <p id="wellnessInfo"></p>
+</div>
+
+<!-- ================= CLINICAL ACTIONS ================= -->
+<div class="section">
+    <h3>Clinical Actions</h3>
+    <button onclick="goTo('prescription.html')">🎙️ Voice Prescription</button>
+    <button onclick="goTo('summary.html')">📄 Generate Summary</button>
+    <button onclick="goTo('education.html')">📚 Patient Education</button>
+    <button onclick="goTo('support.html')">💊 Patient Support</button>
+    <button onclick="goTo('wellness.html')">❤️ Wellness Tracking</button>
+</div>
 
 <script>
-if(!localStorage.name){
-    document.body.innerHTML = "Start from index.html";
+/* ========== SAFETY CHECK ========== */
+if (!localStorage.name) {
+    document.body.innerHTML = "<h2>Please start from index.html</h2>";
 }
 
-info.innerHTML = `
+/* ========== PATIENT PROFILE ========== */
+patientProfile.innerHTML = `
 <b>Name:</b> ${localStorage.name}<br>
 <b>Age:</b> ${localStorage.age}<br>
 <b>Gender:</b> ${localStorage.gender}<br>
-<b>History:</b> ${localStorage.history}<br>
+<b>Medical History:</b> ${localStorage.history}<br>
 <b>Smoking:</b> ${localStorage.smoke}<br>
 <b>Alcohol:</b> ${localStorage.alcohol}<br>
 <b>Conditions:</b> ${localStorage.conditions}<br>
-<b>Allergies:</b> ${localStorage.allergy}<br><br>
+<b>Allergies:</b> ${localStorage.allergy}
+`;
 
-<b>BP:</b> ${localStorage.bp}<br>
+/* ========== VITALS ========== */
+vitalsInfo.innerHTML = `
+<b>Blood Pressure:</b> ${localStorage.bp}<br>
 <b>Heart Rate:</b> ${localStorage.heart}<br>
 <b>Temperature:</b> ${localStorage.temp}
 `;
 
-function go(page){
-    window.location.href = page;
-}
-</script>
+/* ========== RISK ALERT LOGIC ========== */
+let risks = [];
 
-</body>
-</html>
+if (localStorage.smoke === "Yes" && localStorage.bp && localStorage.bp.includes("14")) {
+    risks.push("Smoking combined with high BP increases cardiovascular risk.");
+}
+
+if (localStorage.alcohol === "Yes") {
+    risks.push("Alcohol consumption may interfere with prescribed medication.");
+}
+
+if (localStorage.sleep === "Poor" || localStorage.mood === "Stressed") {
+    risks.push("Wellness indicators suggest possible stress or fatigue.");
+}
+
+riskAlerts.innerHTML = risks.length
+    ? risks.map(r => "• " + r).join("<br>")
+    : "<span style='color:green'>No immediate risks detected.</span>";
+
+/* ========== EDUCATION FEEDBACK ========== */
+educationInfo.innerHTML = localStorage.education_ack
+    ? `Education acknowledged by patient: <b>${localStorage.education_ack}</b>`
+    : "Education module not completed yet.";
+
+/* ========== SUPPORT INFO ========== */
+supportInfo.innerHTML = `
+<b>Symptoms:</b> ${localStorage.symptoms || "Not reported"}<br>
+<b>Medication Notes:</b> ${localStorage.reminder || "No notes"}
+`;
+
+/* ========== WELLNESS INFO =*
