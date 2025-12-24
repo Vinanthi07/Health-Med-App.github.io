@@ -23,3 +23,12 @@
     </div>
 
     <textarea id="output" placeholder="Spoken prescription will appear here..."></textarea>
+    <button onclick="goToSummary()">Generate Discharge Summary</button>
+<script>
+function goToSummary() {
+    const text = document.getElementById("output").value;
+    localStorage.setItem("prescriptionText", text);
+    window.location.href = "summary.html";
+}
+</script>
+
