@@ -1,53 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Patient Vitals</title>
-    <style>
-        body { font-family: Arial; max-width: 600px; margin:auto; padding:20px; }
-        input, button { width: 100%; padding: 10px; margin-top: 10px; }
-        button { cursor: pointer; }
-    </style>
+    <title>Vitals</title>
 </head>
 <body>
 
 <h2>Enter Patient Vitals</h2>
 
-<form id="vitalsForm">
-    <label>Blood Pressure (e.g., 120/80)</label>
-    <input type="text" id="bp" required>
+<form onsubmit="saveVitals(event)">
+    Blood Pressure: <input type="text" id="bp" required><br><br>
+    Heart Rate: <input type="number" id="heart" required><br><br>
+    Temperature: <input type="number" id="temp" required><br><br>
 
-    <label>Heart Rate (bpm)</label>
-    <input type="number" id="heart" required>
-
-    <label>Temperature (°C)</label>
-    <input type="number" id="temp" step="0.1" required>
-
-    <label>Oxygen Level (%)</label>
-    <input type="number" id="oxygen" required>
-
-    <button type="submit">Submit Vitals</button>
+    <button type="submit">Go to Doctor Dashboard</button>
 </form>
 
 <script>
-document.getElementById("vitalsForm").addEventListener("submit", function(e){
+function saveVitals(e) {
     e.preventDefault();
 
-    const vitalsData = {
-        bp: document.getElementById("bp").value.trim(),
-        heart: document.getElementById("heart").value.trim(),
-        temp: document.getElementById("temp").value.trim(),
-        oxygen: document.getElementById("oxygen").value.trim()
-    };
+    localStorage.setItem("bp", document.getElementById("bp").value);
+    localStorage.setItem("heart", document.getElementById("heart").value);
+    localStorage.setItem("temp", document.getElementById("temp").value);
 
-    if(!vitalsData.bp || !vitalsData.heart || !vitalsData.temp || !vitalsData.oxygen){
-        alert("Please fill all vitals");
-        return;
-    }
-
-    localStorage.setItem("vitalsData", JSON.stringify(vitalsData));
     window.location.href = "doctor.html";
-});
+}
 </script>
 
 </body>
