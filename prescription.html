@@ -2,33 +2,33 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Digital Prescription</title>
+    <title>Prescription</title>
     <style>
-        body { font-family: Arial; background:#f2f2f2; padding:20px; }
-        .card { background:#fff; padding:20px; max-width:600px; margin:auto; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,0.2); }
-        button { display:block; width:100%; padding:12px; margin:10px 0; font-size:16px; cursor:pointer; background:#4CAF50; color:#fff; border:none; border-radius:5px; }
-        textarea { width:100%; height:120px; padding:10px; font-size:16px; }
-        .prescription-sheet { margin-top:20px; padding:15px; border:2px solid #333; border-radius:10px; background:#fff; }
+        body { font-family: Arial; max-width: 700px; margin:auto; padding:20px; }
+        textarea, button { width: 100%; padding: 10px; margin-top: 10px; }
+        button { cursor: pointer; }
     </style>
 </head>
 <body>
 
-<div class="card">
-    <h2>Voice-Assisted Digital Prescription</h2>
+<h2>Prescription</h2>
 
-    <!-- BUTTONS -->
-    <div id="buttonsContainer">
-        <button id="startBtn">🎙️ Start Recording</button>
-        <button id="generateBtn">🖨️ Generate Prescription Sheet</button>
-    </div>
+<textarea id="prescription" rows="8" placeholder="Write prescription here..."></textarea>
+<button onclick="savePrescription()">Save Prescription</button>
+<br>
+<a href="doctor.html">Back to Doctor Dashboard</a>
 
-    <textarea id="output" placeholder="Spoken prescription will appear here..."></textarea>
-    <button onclick="goToSummary()">Generate Discharge Summary</button>
 <script>
-function goToSummary() {
-    const text = document.getElementById("output").value;
-    localStorage.setItem("prescriptionText", text);
-    window.location.href = "summary.html";
+function savePrescription(){
+    const text = document.getElementById("prescription").value.trim();
+    if(!text){
+        alert("Please write prescription");
+        return;
+    }
+    localStorage.setItem("prescriptionData", text);
+    alert("Prescription saved!");
 }
 </script>
 
+</body>
+</html>
