@@ -2,30 +2,21 @@
 <html>
 <head>
     <title>Patient Support</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <h2>Patient Support</h2>
 
-<label>Today's Symptoms</label>
-<textarea id="symptoms" placeholder="Pain, fever, dizziness, etc"></textarea>
+<p>Suggested support resources based on patient conditions:</p>
 
-<label>Medication Reminder Notes</label>
-<textarea id="reminder" placeholder="Medicine timings, precautions"></textarea>
+<div id="supportContent"></div>
 
-<button onclick="saveSupport()">Save Support Info</button>
+<h3>Patient Feedback</h3>
+<textarea id="supportText" placeholder="Type your feedback here"></textarea>
+<br>
+<button type="button" id="saveSupport">Submit Feedback</button>
 
-<script>
-symptoms.value = localStorage.symptoms || "";
-reminder.value = localStorage.reminder || "";
-
-function saveSupport(){
-    localStorage.setItem("symptoms", symptoms.value);
-    localStorage.setItem("reminder", reminder.value);
-    alert("Support information saved");
-    window.location.href = "doctor.html";
-}
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
