@@ -1,108 +1,77 @@
 <!DOCTYPE html>
-console.log("Patient:", patient);
-console.log("Vitals:", vitals);
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Doctor Dashboard</title>
+    <title>Patient Registration</title>
     <style>
-        body { font-family: Arial, sans-serif; padding: 20px; }
-        .card {
-            border: 1px solid #ccc;
-            padding: 15px;
-            margin-bottom: 15px;
-            border-radius: 8px;
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            max-width: 600px;
+            margin: auto;
+        }
+        input, textarea, select, button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 8px;
         }
         button {
-            padding: 10px 15px;
-            margin: 5px;
+            margin-top: 15px;
             cursor: pointer;
         }
-        h2 { margin-top: 0; }
     </style>
 </head>
 <body>
 
-<h1>Doctor Dashboard</h1>
+<h2>OPD Patient Registration</h2>
+<p>Please enter patient details carefully. This information will be reviewed by the doctor.</p>
 
-<!-- PATIENT DETAILS -->
-<div class="card">
-    <h2>Patient Information</h2>
-    <p id="patientInfo">Loading patient data...</p>
-</div>
+<form id="patientForm">
 
-<!-- VITALS DETAILS -->
-<div class="card">
-    <h2>Vitals Report</h2>
-    <p id="vitalsInfo">Loading vitals data...</p>
-</div>
+    <label>Full Name</label>
+    <input type="text" id="name" required>
 
-<!-- CLINICAL ACTIONS -->
-<div class="card">
-    <h2>Clinical Actions</h2>
+    <label>Age</label>
+    <input type="number" id="age" required>
 
-    <button onclick="openEducation()">📚 Patient Education</button>
-    <button onclick="goToPrescription()">📝 Generate Prescription</button>
-</div>
+    <label>Gender</label>
+    <select id="gender" required>
+        <option value="">Select</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+    </select>
 
-<!-- POST CARE -->
-<div class="card">
-    <h2>Post-Care Modules (After Discharge)</h2>
+    <label>Medical History (Smoking, alcohol, allergies, past illness)</label>
+    <textarea id="history" rows="4" placeholder="Example: Smoking for 5 years, no allergies"></textarea>
 
-    <button onclick="openSupport()">💊 Patient Support</button>
-    <button onclick="openWellness()">❤️ Wellness Tracking</button>
-</div>
+    <button type="submit">Proceed to Vitals Check</button>
+
+</form>
 
 <script>
-/* LOAD PATIENT DATA */
-const patient = JSON.parse(localStorage.getItem("patientData"));
-const vitals = JSON.parse(localStorage.getItem("vitalsData"));
+document.getElementById("patientForm").addEventListener("submit", function (e) {
+    e.preventDefault();
 
-if (patient) {
-    document.getElementById("patientInfo").innerHTML = `
-        Name: ${patient.name || "N/A"} <br>
-        Age: ${patient.age || "N/A"} <br>
-        Gender: ${patient.gender || "N/A"} <br>
-        Medical History: ${patient.history || "Not disclosed"}
-    `;
-} else {
-    document.getElementById("patientInfo").innerText =
-        "No patient data found.";
-}
+    const patientData = {
+        name: document.getElementById("name").value.trim(),
+        age: document.getElementById("age").value.trim(),
+        gender: document.getElementById("gender").value,
+        history: document.getElementById("history").value.trim()
+    };
 
-if (vitals) {
-    document.getElementById("vitalsInfo").innerHTML = `
-        Blood Pressure: ${vitals.bp || "Normal"} <br>
-        Heart Rate: ${vitals.heart || "Normal"} bpm <br>
-        Temperature: ${vitals.temp || "Normal"} °C <br>
-        Oxygen Level: ${vitals.oxygen || "Normal"} %
-    `;
-} else {
-    document.getElementById("vitalsInfo").innerText =
-        "No vitals data found.";
-}
-
-/* NAVIGATION CONTROL */
-function goToPrescription() {
-    if (!patient || !vitals) {
-        alert("Patient data and vitals must be reviewed before prescription.");
+    // Basic validation
+    if (!patientData.name || !patientData.age || !patientData.gender) {
+        alert("Please fill all required fields");
         return;
     }
-    window.location.href = "prescription.html";
-}
 
-function openEducation() {
-    window.location.href = "modules/education/education.html";
-}
+    // Save data
+    localStorage.setItem("patientData", JSON.stringify(patientData));
 
-function openSupport() {
-    window.location.href = "modules/patient-support/support.html";
-}
-
-function openWellness() {
-    window.location.href = "modules/wellness/wellness.html";
-}
+    // Move to vitals
+    window.location.href = "vitals.html";
+});
 </script>
 
 </body>
