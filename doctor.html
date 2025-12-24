@@ -1,93 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Doctor Dashboard</title>
-    <style>
-        body { font-family: Arial, sans-serif; padding: 20px; }
-        .card { border: 1px solid #ccc; padding: 15px; margin-bottom: 15px; border-radius: 8px; }
-        button { padding: 10px 15px; margin: 5px; cursor: pointer; }
-        h2 { margin-top: 0; }
-    </style>
-</head>
-<body>
-
-<h1>Doctor Dashboard</h1>
-
-<!-- PATIENT DETAILS -->
-<div class="card">
-    <h2>Patient Information</h2>
-    <p id="patientInfo">Loading patient data...</p>
-</div>
-
-<!-- VITALS DETAILS -->
-<div class="card">
-    <h2>Vitals Report</h2>
-    <p id="vitalsInfo">Loading vitals data...</p>
-</div>
-
-<!-- CLINICAL ACTIONS -->
-<div class="card">
-    <h2>Clinical Actions</h2>
-    <button onclick="openEducation()">📚 Patient Education</button>
-    <button onclick="goToPrescription()">📝 Generate Prescription</button>
-</div>
-
-<!-- POST CARE -->
-<div class="card">
-    <h2>Post-Care Modules (After Discharge)</h2>
-    <button onclick="openSupport()">💊 Patient Support</button>
-    <button onclick="openWellness()">❤️ Wellness Tracking</button>
-</div>
-
 <script>
-/* LOAD PATIENT AND VITALS DATA */
 const patient = JSON.parse(localStorage.getItem("patientData"));
 const vitals = JSON.parse(localStorage.getItem("vitalsData"));
 
-if (patient) {
+// Display Patient Info
+if(patient){
     document.getElementById("patientInfo").innerHTML = `
         Name: ${patient.name} <br>
         Age: ${patient.age} <br>
         Gender: ${patient.gender} <br>
         Medical History: ${patient.history || "Not disclosed"}
     `;
-} else {
-    document.getElementById("patientInfo").innerText = "No patient data found. Fill patient.html first.";
+}else{
+    document.getElementById("patientInfo").innerText = 
+        "No patient data found. Fill patient.html first.";
 }
 
-if (vitals) {
+// Display Vitals Info
+if(vitals){
     document.getElementById("vitalsInfo").innerHTML = `
         Blood Pressure: ${vitals.bp} <br>
         Heart Rate: ${vitals.heart} bpm <br>
         Temperature: ${vitals.temp} °C <br>
         Oxygen Level: ${vitals.oxygen} %
     `;
-} else {
-    document.getElementById("vitalsInfo").innerText = "No vitals data found. Fill vitals.html first.";
+}else{
+    document.getElementById("vitalsInfo").innerText =
+        "No vitals data found. Fill vitals.html first.";
 }
 
-/* NAVIGATION CONTROL */
-function goToPrescription() {
-    if (!patient || !vitals) {
+// Button Actions
+function goToPrescription(){
+    if(!patient || !vitals){
         alert("Patient data and vitals must be filled before prescription.");
         return;
     }
     window.location.href = "prescription.html";
 }
 
-function openEducation() {
+function openEducation(){
     window.location.href = "modules/education/education.html";
 }
 
-function openSupport() {
+function openSupport(){
     window.location.href = "modules/patient-support/support.html";
 }
 
-function openWellness() {
+function openWellness(){
     window.location.href = "modules/wellness/wellness.html";
 }
 </script>
-
-</body>
-</html>
