@@ -1,21 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Patient Support</title>
-    <link rel="stylesheet" href="style.css">
+  <title>Patient Support</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<h2>Patient Support</h2>
+<h2>Patient Support Services</h2>
 
-<p>Suggested support resources based on patient conditions:</p>
+<div class="card">
+  <h3>Available Medical Support</h3>
+  <ul>
+    <li>👩‍⚕️ Nurse On Call: 24/7</li>
+    <li>🧑‍⚕️ Doctor Tele-Consultation</li>
+    <li>🚑 Emergency Response Team</li>
+    <li>🧠 Mental Health Counselor</li>
+  </ul>
+</div>
 
-<div id="supportContent"></div>
+<div class="card">
+  <h3>Emergency Contacts</h3>
+  <p>📞 Ambulance: 108</p>
+  <p>📞 Hospital Helpline: 080-123456</p>
+</div>
 
-<h3>Patient Feedback</h3>
-<textarea id="supportText" placeholder="Type your feedback here"></textarea>
+<h3>Your Feedback</h3>
+<textarea id="supportText" placeholder="Any support you need?"></textarea>
 <br>
-<button type="button" id="saveSupport">Submit Feedback</button>
+<button id="saveSupport">Submit Support Request</button>
 
 <script src="script.js"></script>
 </body>
