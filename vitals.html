@@ -1,19 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Patient Vitals</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; max-width: 600px; margin: auto; }
+        input, button { width: 100%; padding: 10px; margin-top: 10px; }
+        button { cursor: pointer; }
+    </style>
+</head>
+<body>
+
+<h2>Enter Vitals</h2>
+<form id="vitalsForm">
+
+    <label>Blood Pressure (e.g., 120/80)</label>
+    <input type="text" id="bp" required>
+
+    <label>Heart Rate (bpm)</label>
+    <input type="number" id="heart" required>
+
+    <label>Temperature (°C)</label>
+    <input type="number" id="temp" step="0.1" required>
+
+    <label>Oxygen Level (%)</label>
+    <input type="number" id="oxygen" required>
+
+    <button type="submit">Submit Vitals</button>
+</form>
+
 <script>
-document.getElementById("vitalsForm").addEventListener("submit", function(e) {
+document.getElementById("vitalsForm").addEventListener("submit", function(e){
     e.preventDefault();
 
     const vitalsData = {
-        bp: document.getElementById("bp").value,
-        heart: document.getElementById("heart").value,
-        temp: document.getElementById("temp").value,
-        oxygen: document.getElementById("oxygen").value
+        bp: document.getElementById("bp").value.trim(),
+        heart: document.getElementById("heart").value.trim(),
+        temp: document.getElementById("temp").value.trim(),
+        oxygen: document.getElementById("oxygen").value.trim()
     };
 
+    // Basic validation
+    if (!vitalsData.bp || !vitalsData.heart || !vitalsData.temp || !vitalsData.oxygen) {
+        alert("Please fill all vitals");
+        return;
+    }
+
+    // Save to localStorage
     localStorage.setItem("vitalsData", JSON.stringify(vitalsData));
+
+    // Redirect to doctor dashboard
     window.location.href = "doctor.html";
 });
 </script>
-<input id="bp">
-<input id="heart">
-<input id="temp">
-<input id="oxygen">
+
+</body>
+</html>
