@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Discharge Summary</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<h2>Patient Discharge Summary</h2>
+
+<div id="summaryBox"></div>
+
+<script>
+const patient = JSON.parse(localStorage.getItem("patientData"));
+const vitals = JSON.parse(localStorage.getItem("vitalsData"));
+const prescription = localStorage.getItem("prescriptionText");
+
+let summaryText = `
+<h3>Patient Information</h3>
+<p>The patient attended the outpatient department for a routine medical consultation.
+Basic personal and medical history was collected prior to examination.</p>
+
+<h3>Vitals Assessment</h3>
+<p>Blood Pressure: ${vitals?.bp || "Normal"}<br>
+Heart Rate: ${vitals?.heart || "Normal"} bpm<br>
+Body Temperature: ${vitals?.temp || "Normal"} °C<br>
+Oxygen Saturation: ${vitals?.oxygen || "Normal"}%</p>
+
+<h3>Clinical Observation</h3>
+<p>Based on the patient’s disclosed history and vitals, no immediate critical
+abnormalities were observed during the examination.</p>
+
+<h3>Treatment & Prescription</h3>
+<p>${prescription || "Prescribed medication as per clinical assessment."}</p>
+
+<h3>Discharge Advice</h3>
+<p>The patient has been advised to follow the prescribed medication schedule,
+maintain a healthy lifestyle, and return for follow-up if symptoms persist.</p>
+`;
+
+document.getElementById("summaryBox").innerHTML = summaryText;
+</script>
+
+</body>
+</html>
