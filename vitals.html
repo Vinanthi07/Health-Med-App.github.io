@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Vitals</title>
+    <title>Vitals Entry</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<h2>Vitals Entry</h2>
+<h2>Enter Patient Vitals</h2>
 
 <label>Blood Pressure</label>
-<input id="bp">
+<input id="bp" placeholder="120/80">
 
 <label>Heart Rate</label>
 <input id="heart">
@@ -16,16 +17,8 @@
 <label>Temperature</label>
 <input id="temp">
 
-<button onclick="saveVitals()">Go to Doctor</button>
+<button type="button" onclick="saveVitals()">Submit → Doctor Dashboard</button>
 
-<script>
-function saveVitals(){
-    localStorage.setItem("bp", bp.value);
-    localStorage.setItem("heart", heart.value);
-    localStorage.setItem("temp", temp.value);
-    window.location.href = "doctor.html";
-}
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
