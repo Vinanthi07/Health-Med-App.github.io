@@ -1,9 +1,52 @@
-function saveData() {
-    localStorage.setItem("age", document.getElementById("age").value);
-    localStorage.setItem("smoke", document.getElementById("smoke").value);
-    localStorage.setItem("alcohol", document.getElementById("alcohol").value);
-    localStorage.setItem("conditions", document.getElementById("conditions").value);
-    localStorage.setItem("allergy", document.getElementById("allergy").value);
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HealthMed Insight</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-    window.location.href = "vitals.html";
-}
+<h1>HealthMed Insight</h1>
+<p>Patient Pre-Consultation Form</p>
+
+<div class="card">
+    <label>Name</label>
+    <input id="name">
+
+    <label>Age</label>
+    <input type="number" id="age">
+
+    <label>Gender</label>
+    <select id="gender">
+        <option>Male</option>
+        <option>Female</option>
+        <option>Other</option>
+    </select>
+
+    <label>Medical History</label>
+    <textarea id="history"></textarea>
+
+    <label>Smoking</label>
+    <select id="smoke">
+        <option>No</option>
+        <option>Yes</option>
+    </select>
+
+    <label>Alcohol</label>
+    <select id="alcohol">
+        <option>No</option>
+        <option>Yes</option>
+    </select>
+
+    <label>Known Conditions</label>
+    <input id="conditions">
+
+    <label>Allergies</label>
+    <input id="allergy">
+
+    <button onclick="savePatient()">Proceed to Vitals</button>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
