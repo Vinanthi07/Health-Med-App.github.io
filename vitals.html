@@ -5,24 +5,24 @@
 </head>
 <body>
 
-<h2>Enter Patient Vitals</h2>
+<h2>Vitals Entry</h2>
 
-<form onsubmit="saveVitals(event)">
-    Blood Pressure: <input type="text" id="bp" required><br><br>
-    Heart Rate: <input type="number" id="heart" required><br><br>
-    Temperature: <input type="number" id="temp" required><br><br>
+<label>Blood Pressure</label>
+<input id="bp">
 
-    <button type="submit">Go to Doctor Dashboard</button>
-</form>
+<label>Heart Rate</label>
+<input id="heart">
+
+<label>Temperature</label>
+<input id="temp">
+
+<button onclick="saveVitals()">Go to Doctor</button>
 
 <script>
-function saveVitals(e) {
-    e.preventDefault();
-
-    localStorage.setItem("bp", document.getElementById("bp").value);
-    localStorage.setItem("heart", document.getElementById("heart").value);
-    localStorage.setItem("temp", document.getElementById("temp").value);
-
+function saveVitals(){
+    localStorage.setItem("bp", bp.value);
+    localStorage.setItem("heart", heart.value);
+    localStorage.setItem("temp", temp.value);
     window.location.href = "doctor.html";
 }
 </script>
