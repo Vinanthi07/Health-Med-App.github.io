@@ -1,14 +1,12 @@
-function saveData() {
-    const patientData = {
-        age: document.getElementById("age").value,
-        smoke: document.getElementById("smoke").value,
-        alcohol: document.getElementById("alcohol").value,
-        conditions: document.getElementById("conditions").value,
-        allergy: document.getElementById("allergy").value
-    };
+function savePatient(){
+    localStorage.setItem("name", name.value);
+    localStorage.setItem("age", age.value);
+    localStorage.setItem("gender", gender.value);
+    localStorage.setItem("history", history.value);
+    localStorage.setItem("smoke", smoke.value);
+    localStorage.setItem("alcohol", alcohol.value);
+    localStorage.setItem("conditions", conditions.value);
+    localStorage.setItem("allergy", allergy.value);
 
-    localStorage.setItem("patientData", JSON.stringify(patientData));
-    alert("Health data saved successfully!");
-
-    window.location.href = "doctor.html";
+    window.location.href = "vitals.html";
 }
