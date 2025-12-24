@@ -4,12 +4,29 @@
     <meta charset="UTF-8">
     <title>Doctor Dashboard</title>
     <style>
-        body { font-family: Arial; padding: 20px; max-width: 900px; margin:auto; }
-        h1 { text-align: center; color: #2c3e50; }
-        .card { border: 1px solid #ccc; padding: 15px; margin-bottom: 15px; border-radius: 8px; }
-        button { padding: 10px 15px; margin: 5px; cursor: pointer; border-radius: 5px; border:none; background:#3498db; color:white; }
-        button:hover { background:#2980b9; }
-        h2 { margin-top: 0; color: #34495e; }
+        body {
+            font-family: Arial, sans-serif;
+            background: #eef2f5;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .card {
+            background: white;
+            padding: 20px;
+            margin: 15px auto;
+            max-width: 600px;
+            border-radius: 8px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 15px;
+            background: #0d6efd;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
@@ -17,59 +34,33 @@
 <h1>Doctor Dashboard</h1>
 
 <div class="card">
-    <h2>Patient Information</h2>
-    <p id="patientInfo">Loading patient data...</p>
+    <h3>Patient Information</h3>
+    <p><b>Name:</b> <span id="pName">-</span></p>
+    <p><b>Age:</b> <span id="pAge">-</span></p>
+    <p><b>Gender:</b> <span id="pGender">-</span></p>
+    <p><b>Medical History:</b> <span id="pHistory">-</span></p>
 </div>
 
 <div class="card">
-    <h2>Vitals Report</h2>
-    <p id="vitalsInfo">Loading vitals data...</p>
+    <h3>Vitals Report</h3>
+    <p><b>Blood Pressure:</b> <span id="pBP">-</span></p>
+    <p><b>Heart Rate:</b> <span id="pHeart">-</span></p>
 </div>
 
 <div class="card">
-    <h2>Clinical Actions</h2>
-    <button onclick="window.location.href='education.html'">📚 Patient Education</button>
-    <button onclick="goToPrescription()">📝 Generate Prescription</button>
-</div>
-
-<div class="card">
-    <h2>Post-Care Modules</h2>
-    <button onclick="window.location.href='support.html'">💊 Patient Support</button>
-    <button onclick="window.location.href='wellness.html'">❤️ Wellness Tracking</button>
+    <a class="btn" href="patient.html">Add / Update Patient</a>
 </div>
 
 <script>
-const patient = JSON.parse(localStorage.getItem("patientData"));
-const vitals = JSON.parse(localStorage.getItem("vitalsData"));
+const data = JSON.parse(localStorage.getItem("patientData"));
 
-if(patient){
-    document.getElementById("patientInfo").innerHTML = `
-        <strong>Name:</strong> ${patient.name} <br>
-        <strong>Age:</strong> ${patient.age} <br>
-        <strong>Gender:</strong> ${patient.gender} <br>
-        <strong>Medical History:</strong> ${patient.history || "Not disclosed"}
-    `;
-} else {
-    document.getElementById("patientInfo").innerText = "No patient data found. Fill patient.html first.";
-}
-
-if(vitals){
-    document.getElementById("vitalsInfo").innerHTML = `
-        <strong>Blood Pressure:</strong> ${vitals.bp} <br>
-        <strong>Heart Rate:</strong> ${vitals.heart} bpm <br>
-        <strong>Temperature:</strong> ${vitals.temp} °C <br>
-        <strong>Oxygen Level:</strong> ${vitals.oxygen} %
-    `;
-} else {
-    document.getElementById("vitalsInfo").innerText = "No vitals data found. Fill vitals.html first.";
-}
-
-function goToPrescription(){
-    if(!patient || !vitals){
-        alert("Patient data and vitals must be filled before prescription.");
-        return;
-    }
-    window.location.href = "prescription.html";
+if (data) {
+    document.getElementById("pName").innerText = data.name;
+    document.getElementById("pAge").innerText = data.age;
+    document.getElementById("pGender").innerText = data.gender;
+    document.getElementById("pHistory").innerText = data.history || "Not disclosed";
+    document.getElementById("pBP").innerText = data.bp || "Not available";
+    document.getElementById("pHeart").innerText = data.heartRate || "Not available";
 }
 </script>
 
