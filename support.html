@@ -1,12 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
     <title>Patient Support</title>
 </head>
 <body>
-<h1>Patient Support Module</h1>
-<p>Include medication reminders, symptom diary, exercises, and teleconsultation links.</p>
-<a href="doctor.html">Back to Doctor Dashboard</a>
+
+<h2>Patient Support</h2>
+
+<label>Today's Symptoms</label>
+<textarea id="symptoms" placeholder="Pain, fever, dizziness, etc"></textarea>
+
+<label>Medication Reminder Notes</label>
+<textarea id="reminder" placeholder="Medicine timings, precautions"></textarea>
+
+<button onclick="saveSupport()">Save Support Info</button>
+
+<script>
+symptoms.value = localStorage.symptoms || "";
+reminder.value = localStorage.reminder || "";
+
+function saveSupport(){
+    localStorage.setItem("symptoms", symptoms.value);
+    localStorage.setItem("reminder", reminder.value);
+    alert("Support information saved");
+    window.location.href = "doctor.html";
+}
+</script>
+
 </body>
 </html>
