@@ -48,5 +48,12 @@
  
 
 <script src="script.js"></script>
+  <script>
+  function updateSleep(val) {
+    document.getElementById("sleepValue").innerText = val;
+    localStorage.setItem("sleep", val);
+  }
+</script>
+
 </body>
 </html>
