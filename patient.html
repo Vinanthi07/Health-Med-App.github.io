@@ -4,17 +4,17 @@
     <meta charset="UTF-8">
     <title>Patient Registration</title>
     <style>
-        body { font-family: Arial; max-width: 600px; margin:auto; padding:20px;}
-        input, select, textarea, button { width: 100%; padding:10px; margin-top:8px;}
-        button { cursor:pointer; }
+        body { font-family: Arial; max-width: 600px; margin:auto; padding:20px; }
+        input, select, textarea, button { width: 100%; padding: 10px; margin-top: 8px; }
+        button { cursor: pointer; margin-top: 15px; }
     </style>
 </head>
 <body>
 
 <h2>OPD Patient Registration</h2>
+<p>Enter patient details. This will be reviewed by the doctor.</p>
 
 <form id="patientForm">
-
     <label>Full Name</label>
     <input type="text" id="name" required>
 
@@ -29,11 +29,10 @@
         <option value="Other">Other</option>
     </select>
 
-    <label>Medical History (Smoking, alcohol, allergies, past illness)</label>
-    <textarea id="history" rows="4"></textarea>
+    <label>Medical History</label>
+    <textarea id="history" rows="4" placeholder="Smoking, allergies, past illness"></textarea>
 
     <button type="submit">Proceed to Vitals</button>
-
 </form>
 
 <script>
@@ -52,10 +51,7 @@ document.getElementById("patientForm").addEventListener("submit", function(e){
         return;
     }
 
-    // Save patient data to localStorage
     localStorage.setItem("patientData", JSON.stringify(patientData));
-
-    // Redirect to vitals.html
     window.location.href = "vitals.html";
 });
 </script>
