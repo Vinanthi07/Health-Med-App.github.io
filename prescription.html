@@ -1,32 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
     <title>Prescription</title>
-    <style>
-        body { font-family: Arial; max-width: 700px; margin:auto; padding:20px; }
-        textarea, button { width: 100%; padding: 10px; margin-top: 10px; }
-        button { cursor: pointer; }
-    </style>
 </head>
 <body>
 
-<h2>Prescription</h2>
+<h2>Digital Prescription</h2>
 
-<textarea id="prescription" rows="8" placeholder="Write prescription here..."></textarea>
-<button onclick="savePrescription()">Save Prescription</button>
-<br>
-<a href="doctor.html">Back to Doctor Dashboard</a>
+<textarea id="rx" rows="6" cols="50"
+placeholder="Medicines, dosage, instructions"></textarea><br><br>
+
+<button onclick="save()">Save</button>
 
 <script>
-function savePrescription(){
-    const text = document.getElementById("prescription").value.trim();
-    if(!text){
-        alert("Please write prescription");
-        return;
-    }
-    localStorage.setItem("prescriptionData", text);
-    alert("Prescription saved!");
+function save(){
+    localStorage.setItem("prescription", rx.value);
+    alert("Prescription saved");
 }
 </script>
 
