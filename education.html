@@ -1,21 +1,34 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Patient Education</title>
-    <link rel="stylesheet" href="style.css">
+  <title>Patient Education</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<h2>Patient Education</h2>
+<h2>Patient Education Plan</h2>
 
-<p>Based on patient's medical history, age, and habits, educational materials are recommended:</p>
+<div class="card">
+  <h3>Recommended Actions</h3>
+  <ul>
+    <li>🥗 Eat balanced meals</li>
+    <li>🚶 Walk at least 30 minutes daily</li>
+    <li>💊 Take medicines on time</li>
+    <li>🚭 Avoid smoking & alcohol</li>
+  </ul>
+</div>
 
-<div id="eduContent"></div>
+<div class="card">
+  <h3>Visual Guidance</h3>
+  <img src="https://cdn-icons-png.flaticon.com/512/2965/2965567.png" width="80">
+  <img src="https://cdn-icons-png.flaticon.com/512/2920/2920261.png" width="80">
+  <img src="https://cdn-icons-png.flaticon.com/512/3050/3050525.png" width="80">
+</div>
 
-<h3>Patient Feedback</h3>
-<textarea id="educationText" placeholder="Type your feedback here"></textarea>
+<h3>Your Feedback</h3>
+<textarea id="educationText" placeholder="Was this information helpful?"></textarea>
 <br>
-<button type="button" id="saveEducation">Submit Feedback</button>
+<button id="saveEducation">Submit Feedback</button>
 
 <script src="script.js"></script>
 </body>
