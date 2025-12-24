@@ -33,24 +33,7 @@
 <br>
 <button id="saveWellness">Save Wellness Data</button>
 
-  // ================= WELLNESS SLIDER (100% FIX) =================
-document.addEventListener("DOMContentLoaded", function () {
-
-  const sleep = document.getElementById("sleep");
-  const sleepValue = document.getElementById("sleepValue");
-
-  if (sleep && sleepValue) {
-    // set initial value
-    sleepValue.textContent = sleep.value;
-
-    // update while sliding
-    sleep.addEventListener("input", function () {
-      sleepValue.textContent = sleep.value;
-    });
-  }
-
-});
-
+ 
 
 <script src="script.js"></script>
 </body>
