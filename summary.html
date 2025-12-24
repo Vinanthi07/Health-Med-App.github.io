@@ -1,32 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Patient Summary</title>
+    <title>Summary</title>
 </head>
 <body>
 
-<h2>Patient Summary</h2>
-<p id="summary">Loading summary...</p>
-<a href="doctor.html">Back to Dashboard</a>
+<h2>Discharge Summary</h2>
+
+<p id="s"></p>
 
 <script>
-const patient = JSON.parse(localStorage.getItem("patientData"));
-const vitals = JSON.parse(localStorage.getItem("vitalsData"));
-const prescription = localStorage.getItem("prescriptionData");
-
-if(patient && vitals){
-    document.getElementById("summary").innerHTML = `
-        <strong>Name:</strong> ${patient.name} <br>
-        <strong>Age:</strong> ${patient.age} <br>
-        <strong>Gender:</strong> ${patient.gender} <br>
-        <strong>Medical History:</strong> ${patient.history || "Not disclosed"} <br>
-        <strong>Vitals:</strong> BP ${vitals.bp}, Heart ${vitals.heart} bpm, Temp ${vitals.temp} °C, Oxygen ${vitals.oxygen}% <br>
-        <strong>Prescription:</strong> ${prescription || "Not given yet"}
-    `;
-} else {
-    document.getElementById("summary").innerText = "Patient data not found.";
-}
+s.innerText =
+`Patient ${localStorage.name}, aged ${localStorage.age}, presented with
+medical history of ${localStorage.history}.
+Vitals were stable. Prescription was issued.
+Patient advised follow-up and wellness monitoring.`;
 </script>
 
 </body>
