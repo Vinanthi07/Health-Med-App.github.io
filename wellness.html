@@ -1,12 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
     <title>Wellness Tracking</title>
 </head>
 <body>
-<h1>Wellness Tracking Module</h1>
-<p>Track heart rate, sleep, nutrition, and mental health check-ins.</p>
-<a href="doctor.html">Back to Doctor Dashboard</a>
+
+<h2>Wellness Tracking</h2>
+
+<label>Sleep Quality</label>
+<select id="sleep">
+    <option>Good</option>
+    <option>Average</option>
+    <option>Poor</option>
+</select>
+
+<label>Daily Activity Level</label>
+<select id="activity">
+    <option>Active</option>
+    <option>Moderate</option>
+    <option>Low</option>
+</select>
+
+<label>Mood Today</label>
+<select id="mood">
+    <option>Happy</option>
+    <option>Neutral</option>
+    <option>Stressed</option>
+</select>
+
+<br><br>
+<button onclick="saveWellness()">Save Wellness Data</button>
+
+<script>
+sleep.value = localStorage.sleep || "Good";
+activity.value = localStorage.activity || "Moderate";
+mood.value = localStorage.mood || "Neutral";
+
+function saveWellness(){
+    localStorage.setItem("sleep", sleep.value);
+    localStorage.setItem("activity", activity.value);
+    localStorage.setItem("mood", mood.value);
+    alert("Wellness data saved");
+    window.location.href = "doctor.html";
+}
+</script>
+
 </body>
 </html>
