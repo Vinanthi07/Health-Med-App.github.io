@@ -3,45 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <title>Doctor Dashboard</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .card {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+        }
+        button {
+            padding: 10px 15px;
+            margin: 5px;
+            cursor: pointer;
+        }
+        h2 { margin-top: 0; }
+    </style>
 </head>
 <body>
 
-<header>
-    <h1>Doctor Dashboard</h1>
-    <p>Patient Health Summary</p>
-</header>
+<h1>Doctor Dashboard</h1>
 
+<!-- PATIENT DETAILS -->
 <div class="card">
-    <h2>Patient Summary</h2>
-    <div id="summary">Loading patient data...</div>
-    <br>
-    <button id="voiceButton">🎙️ Open Voice Prescription</button>
+    <h2>Patient Information</h2>
+    <p id="patientInfo">Loading patient data...</p>
+</div>
+
+<!-- VITALS DETAILS -->
+<div class="card">
+    <h2>Vitals Report</h2>
+    <p id="vitalsInfo">Loading vitals data...</p>
+</div>
+
+<!-- CLINICAL ACTIONS -->
+<div class="card">
+    <h2>Clinical Actions</h2>
+
+    <button onclick="openEducation()">📚 Patient Education</button>
+    <button onclick="goToPrescription()">📝 Generate Prescription</button>
+</div>
+
+<!-- POST CARE -->
+<div class="card">
+    <h2>Post-Care Modules (After Discharge)</h2>
+
+    <button onclick="openSupport()">💊 Patient Support</button>
+    <button onclick="openWellness()">❤️ Wellness Tracking</button>
 </div>
 
 <script>
-    // Make sure patient data exists
-    let data = JSON.parse(localStorage.getItem("patientData"));
+/* LOAD PATIENT DATA */
+const patient = JSON.parse(localStorage.getItem("patientData"));
+const vitals = JSON.parse(localStorage.getItem("vitalsData"));
 
-    const summaryDiv = document.getElementById("summary");
-    const button = document.getElementById("voiceButton");
+if (patient) {
+    document.getElementById("patientInfo").innerHTML = `
+        Name: ${patient.name || "N/A"} <br>
+        Age: ${patient.age || "N/A"} <br>
+        Gender: ${patient.gender || "N/A"} <br>
+        Medical History: ${patient.history || "Not disclosed"}
+    `;
+} else {
+    document.getElementById("patientInfo").innerText =
+        "No patient data found.";
+}
 
-    if (data) {
-        summaryDiv.innerHTML = `
-            <p><strong>Age:</strong> ${data.age}</p>
-            <p><strong>Smoking:</strong> ${data.smoke}</p>
-            <p><strong>Alcohol:</strong> ${data.alcohol}</p>
-            <p><strong>Conditions:</strong> ${data.conditions}</p>
-            <p><strong>Allergies:</strong> ${data.allergy}</p>
-        `;
-    } else {
-        summaryDiv.innerHTML = "<p>No patient data available.</p>";
+if (vitals) {
+    document.getElementById("vitalsInfo").innerHTML = `
+        Blood Pressure: ${vitals.bp || "Normal"} <br>
+        Heart Rate: ${vitals.heart || "Normal"} bpm <br>
+        Temperature: ${vitals.temp || "Normal"} °C <br>
+        Oxygen Level: ${vitals.oxygen || "Normal"} %
+    `;
+} else {
+    document.getElementById("vitalsInfo").innerText =
+        "No vitals data found.";
+}
+
+/* NAVIGATION CONTROL */
+function goToPrescription() {
+    if (!patient || !vitals) {
+        alert("Patient data and vitals must be reviewed before prescription.");
+        return;
     }
+    window.location.href = "prescription.html";
+}
 
-    // Button action always works
-    button.onclick = () => {
-        window.location.href = "prescription.html";
-    };
+function openEducation() {
+    window.location.href = "modules/education/education.html";
+}
+
+function openSupport() {
+    window.location.href = "modules/patient-support/support.html";
+}
+
+function openWellness() {
+    window.location.href = "modules/wellness/wellness.html";
+}
 </script>
 
 </body>
