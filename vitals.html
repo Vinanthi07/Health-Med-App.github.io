@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Patient Vitals</title>
-    <style>
-        body { font-family: Arial, sans-serif; padding: 20px; max-width: 600px; margin: auto; }
-        input, button { width: 100%; padding: 10px; margin-top: 10px; }
-        button { cursor: pointer; }
-    </style>
+<meta charset="UTF-8">
+<title>Patient Vitals</title>
+<style>
+body { font-family: Arial; max-width:600px; margin:auto; padding:20px; }
+input, button { width:100%; padding:10px; margin-top:10px; }
+button { cursor:pointer; }
+</style>
 </head>
 <body>
 
-<h2>Enter Vitals</h2>
-<form id="vitalsForm">
+<h2>Enter Patient Vitals</h2>
 
-    <label>Blood Pressure (e.g., 120/80)</label>
+<form id="vitalsForm">
+    <label>Blood Pressure</label>
     <input type="text" id="bp" required>
 
     <label>Heart Rate (bpm)</label>
@@ -40,13 +40,11 @@ document.getElementById("vitalsForm").addEventListener("submit", function(e){
         oxygen: document.getElementById("oxygen").value.trim()
     };
 
-    // Basic validation
-    if (!vitalsData.bp || !vitalsData.heart || !vitalsData.temp || !vitalsData.oxygen) {
+    if(!vitalsData.bp || !vitalsData.heart || !vitalsData.temp || !vitalsData.oxygen){
         alert("Please fill all vitals");
         return;
     }
 
-    // Save to localStorage
     localStorage.setItem("vitalsData", JSON.stringify(vitalsData));
 
     // Redirect to doctor dashboard
