@@ -2,45 +2,21 @@
 <html>
 <head>
     <title>Patient Education</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <h2>Patient Education</h2>
 
-<p id="eduContent"></p>
+<p>Based on patient's medical history, age, and habits, educational materials are recommended:</p>
 
-<label>
-    <input type="checkbox" id="ack">
-    I understand the information provided
-</label><br><br>
+<div id="eduContent"></div>
 
-<button onclick="saveEducation()">Save & Return</button>
+<h3>Patient Feedback</h3>
+<textarea id="educationText" placeholder="Type your feedback here"></textarea>
+<br>
+<button type="button" id="saveEducation">Submit Feedback</button>
 
-<script>
-let conditions = localStorage.conditions || "general health";
-let smoke = localStorage.smoke;
-let alcohol = localStorage.alcohol;
-
-let text = `Based on your condition (${conditions}), the following guidance is provided:\n\n`;
-
-if (smoke === "Yes")
-    text += "- Smoking increases complications. Strongly advised to quit.\n";
-
-if (alcohol === "Yes")
-    text += "- Alcohol may interfere with medications. Reduce intake.\n";
-
-text += "- Maintain regular exercise\n";
-text += "- Follow prescribed medication strictly\n";
-text += "- Attend follow-up appointments\n";
-
-eduContent.innerText = text;
-
-function saveEducation(){
-    localStorage.setItem("education_ack", ack.checked ? "Yes" : "No");
-    alert("Education feedback saved");
-    window.location.href = "doctor.html";
-}
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
