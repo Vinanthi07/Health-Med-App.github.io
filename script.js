@@ -1,72 +1,52 @@
-// ========= SAFETY CHECK =========
-if (!localStorage.getItem("name")) {
-    document.body.innerHTML = "<h2>Please start from index.html</h2>";
+console.log("script.js loaded");
+
+// ---------- SAVE PATIENT ----------
+function savePatient() {
+    localStorage.setItem("name", document.getElementById("name").value);
+    localStorage.setItem("age", document.getElementById("age").value);
+    localStorage.setItem("gender", document.getElementById("gender").value);
+    localStorage.setItem("history", document.getElementById("history").value);
+    localStorage.setItem("smoke", document.getElementById("smoke").value);
+    localStorage.setItem("alcohol", document.getElementById("alcohol").value);
+
+    window.location.href = "vitals.html";
 }
 
-// ========= HELPER =========
-function get(key, fallback = "Not provided") {
-    return localStorage.getItem(key) || fallback;
+// ---------- SAVE VITALS ----------
+function saveVitals() {
+    localStorage.setItem("bp", document.getElementById("bp").value);
+    localStorage.setItem("heart", document.getElementById("heart").value);
+    localStorage.setItem("temp", document.getElementById("temp").value);
+
+    window.location.href = "doctor.html";
 }
 
-// ========= PATIENT PROFILE =========
-document.getElementById("patientProfile").innerHTML = `
-<b>Name:</b> ${get("name")}<br>
-<b>Age:</b> ${get("age")}<br>
-<b>Gender:</b> ${get("gender")}<br>
-<b>Medical History:</b> ${get("history")}<br>
-<b>Smoking:</b> ${get("smoke")}<br>
-<b>Alcohol:</b> ${get("alcohol")}<br>
-<b>Conditions:</b> ${get("conditions")}<br>
-<b>Allergies:</b> ${get("allergy")}
-`;
+// ---------- LOAD DASHBOARD ----------
+document.addEventListener("DOMContentLoaded", function () {
 
-// ========= VITALS =========
-document.getElementById("vitalsInfo").innerHTML = `
-<b>Blood Pressure:</b> ${get("bp")}<br>
-<b>Heart Rate:</b> ${get("heart")}<br>
-<b>Temperature:</b> ${get("temp")}
-`;
+    const patientInfo = document.getElementById("patientInfo");
+    if (patientInfo) {
+        patientInfo.innerHTML = `
+        Name: ${localStorage.getItem("name")}<br>
+        Age: ${localStorage.getItem("age")}<br>
+        Gender: ${localStorage.getItem("gender")}<br>
+        History: ${localStorage.getItem("history")}<br>
+        Smoking: ${localStorage.getItem("smoke")}<br>
+        Alcohol: ${localStorage.getItem("alcohol")}
+        `;
+    }
 
-// ========= RISK ALERTS =========
-let risks = [];
+    const vitalsInfo = document.getElementById("vitalsInfo");
+    if (vitalsInfo) {
+        vitalsInfo.innerHTML = `
+        BP: ${localStorage.getItem("bp")}<br>
+        Heart Rate: ${localStorage.getItem("heart")}<br>
+        Temperature: ${localStorage.getItem("temp")}
+        `;
+    }
+});
 
-if (get("smoke") === "Yes" && get("bp").includes("14")) {
-    risks.push("Smoking with high BP increases cardiac risk.");
-}
-
-if (get("alcohol") === "Yes") {
-    risks.push("Alcohol may interfere with medications.");
-}
-
-if (get("sleep") === "Poor" || get("mood") === "Stressed") {
-    risks.push("Mental or physical stress indicators detected.");
-}
-
-document.getElementById("riskAlerts").innerHTML =
-    risks.length > 0
-        ? risks.map(r => "• " + r).join("<br>")
-        : "<span style='color:green'>No immediate risks detected.</span>";
-
-// ========= EDUCATION =========
-document.getElementById("educationInfo").innerHTML =
-    get("education_ack") !== "Not provided"
-        ? "Patient acknowledged education module."
-        : "Education module not completed.";
-
-// ========= SUPPORT =========
-document.getElementById("supportInfo").innerHTML = `
-<b>Symptoms:</b> ${get("symptoms")}<br>
-<b>Medication Reminders:</b> ${get("reminder")}
-`;
-
-// ========= WELLNESS =========
-document.getElementById("wellnessInfo").innerHTML = `
-<b>Sleep:</b> ${get("sleep")}<br>
-<b>Activity:</b> ${get("activity")}<br>
-<b>Mood:</b> ${get("mood")}
-`;
-
-// ========= NAVIGATION =========
+// ---------- NAVIGATION ----------
 function goTo(page) {
     window.location.href = page;
 }
