@@ -1,31 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Vitals Check</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-
-<h2>Basic Health Vitals</h2>
-<p>Please enter basic health check-up details (simulated).</p>
-
-<form id="vitalsForm">
-    <label>Blood Pressure:</label><br>
-    <input type="text" id="bp" placeholder="120/80"><br><br>
-
-    <label>Heart Rate (bpm):</label><br>
-    <input type="number" id="heart"><br><br>
-
-    <label>Body Temperature (°C):</label><br>
-    <input type="number" step="0.1" id="temp"><br><br>
-
-    <label>Oxygen Level (%):</label><br>
-    <input type="number" id="oxygen"><br><br>
-
-    <button type="submit">Proceed to Doctor Consultation</button>
-</form>
-
 <script>
 document.getElementById("vitalsForm").addEventListener("submit", function(e) {
     e.preventDefault();
@@ -41,6 +13,7 @@ document.getElementById("vitalsForm").addEventListener("submit", function(e) {
     window.location.href = "doctor.html";
 });
 </script>
-
-</body>
-</html>
+<input id="bp">
+<input id="heart">
+<input id="temp">
+<input id="oxygen">
