@@ -114,9 +114,6 @@ UI Design	Custom CSS (Health App UI)
 Voice Input	Web Speech API
 Architecture	Modular, page-based
 
-✔ No backend required
-✔ Runs entirely in browser
-✔ Easy to deploy on GitHub Pages
 
 📁 Project Structure
 HealthMed-Insight/
@@ -134,14 +131,14 @@ HealthMed-Insight/
 
 ├── summary.html
 
-│
+
 ├── education.html    # Patient education
 
 ├── support.html      # Medical support
 
 ├── wellness.html     # Wellness tracking
 
-│
+
 ├── style.css         # UI styling
 
 ├── script.js         # Application logic
@@ -162,17 +159,6 @@ Patient accesses education, support & wellness modules
 
 Auto-generated discharge summary created
 
-🌟 Why This Project Stands Out
-
-✔ Solves real clinical problems
-
-✔ Patient-centric & doctor-friendly
-
-✔ Modular & scalable design
-
-✔ Beginner-friendly yet impactful
-
-✔ Aligns with healthcare digital transformation
 
 🎯 Future Enhancements
 
